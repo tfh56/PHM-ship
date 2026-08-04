@@ -3,7 +3,7 @@
 > 零代码、提示词驱动的船舶发动机监测与诊断系统，基于 **Elastic Stack 9.4.4 + 本地大模型 (llama.cpp)**。
 > 单机运行 · 自签名证书 · **Bearer Token 认证** · 小白上手。
 
-[![ES](https://img.shields.io/badge/Elasticsearch-9.x-005571)] [![Kibana](https://img.shields.io/badge/Kibana-9.x-e8478a)] [![LLM](https://img.shields.io/badge/LLM-llama.cpp-00a86b)] [![License](https://img.shields.io/badge/License-MIT-yellow)]
+[![ES](https://img.shields.io/badge/Elasticsearch-9.x-005571)] [![Kibana](https://img.shields.io/badge/Kibana-9.x-e8478a)] [![LLM](https://img.shields.io/badge/LLM-llama.cpp-00a86b)] [![License](https://img.shields.io/badge/License-MulanPSL-white)]
 
 | | |
 |:--|:--|
@@ -34,14 +34,14 @@ SEPDS 把船艇发动机的 **839 个传感器读数**（JSONL：`{name, value, 
 
 ```
         ┌──────────────────────────────────────────────────────────────┐
-        │              船艇发动机（839 传感器，JSONL）                    │
-        │   燃油 · 润滑 · 绕组 · 轴承 · 排温 · 增压器 · PMS              │
+        │              船艇发动机（839 传感器，JSONL）                  │
+        │   燃油 · 润滑 · 绕组 · 轴承 · 排温 · 增压器 · PMS             │
         └────────────────────────┬─────────────────────────────────────┘
                                  │ 滚动 engine_*.txt
                                  ▼
         ┌──────────────────────────────────────────────────────────────┐
-        │  Elastic Agent（Fleet 托管）──► ship_engine-* 时序索引          │
-        │  ILM：3 月热 ──► 12 月温 ──► 36 月冷 ──► 删除                   │
+        │  Elastic Agent（Fleet 托管）──► ship_engine-* 时序索引         │
+        │  ILM：3 月热 ──► 12 月温 ──► 36 月冷 ──► 删除                  │
         └────────────────────────┬─────────────────────────────────────┘
                                  │ Bearer Token（curl）
                                  ▼
@@ -52,15 +52,15 @@ SEPDS 把船艇发动机的 **839 个传感器读数**（JSONL：`{name, value, 
                                          │ 自然语言 → DSL
                                          ▼
         ┌──────────────────────────────────────────────────────────────┐
-        │  4 个反射式角色（A2A 总线）                                      │
-        │  指挥 ─► 船员 ─► 研发 ─► 运维                                   │
-        │  搜索 → 分析 → 评估 → 重试                                      │
+        │  4 个反射式角色（A2A 总线）                                    │
+        │  指挥 ─► 船员 ─► 研发 ─► 运维                                  │
+        │  搜索 → 分析 → 评估 → 重试                                     │
         └────────────────────────┬─────────────────────────────────────┘
                                  ▼
         ┌──────────────────────────────────────────────────────────────┐
-        │  Kibana 仪表盘                                                 │
-        │  ▲ 上层：健康环 · 排温热力图 · 增压器表 · 燃油柜液位            │
-        │  ▼ 下层：参数分析 · 异常分类 · 月季年报告                       │
+        │  Kibana 仪表盘                                                │
+        │  ▲ 上层：健康环 · 排温热力图 · 增压器表 · 燃油柜液位           │
+        │  ▼ 下层：参数分析 · 异常分类 · 月季年报告                      │
         └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -146,7 +146,7 @@ awk -v ts="$(date +%s)" '{
 
 | 层 | 面板 |
 |---|---|
-| **▲ 顶层 — 唯美监控** | 健康环 · 排温热力图 · 增压器表 · 燃油柜液位 |
+| **▲ 上层 — 随便监控**   | 健康环 · 排温热力图 · 增压器表 · 燃油柜液位 |
 | **▼ 下层 — 可交互维护** | 参数分析 · 异常分类（规则 + ML）· 月季年报告 |
 
 > 🔗 仪表盘 JSON 由 `scripts_zh/03_hmi_a2a.sh` 生成。自定义方法见 [§9.6](#9-尾注与内链)。
@@ -171,35 +171,33 @@ awk -v ts="$(date +%s)" '{
 ## 8. 文件清单
 
 ```
-download/
-├── README.md                          ← 本文件（英文，git 首页）
-├── README_zh.md                       ← 中文版（本文件）
-├── software_copyright_source.txt      ← 软著英文（~800 行，自包含）
-├── software_copyright_source_zh.txt   ← 软著中文
-├── scripts/                           ← 英文脚本（6 个文件，≤600 行）
+仓库根目录
+├── README.md                          ← 本文件  （仓库首页）
+├── scripts_zh/                        ← 脚本（6 个文件，≤600 行）
 │   ├── 00_install_stack.sh
 │   ├── 01_data_lake.sh
 │   ├── 02_inference.sh
 │   ├── 03_hmi_a2a.sh
 │   ├── 04_label_refactor.sh
 │   └── run_all.sh
-└── scripts_zh/                        ← 中文脚本（6 个文件）
+├── scripts/                           ← 英文脚本（6 个文件）
+└── data/                              ← 数据样本
 ```
 
 ---
 
-## 9. 尾注与内链
+## 9. 常见问题解答
 
 <details>
-<summary><b>📖 点击展开尾注 [1]–[6]</b></summary>
+<summary><b>📖 点击展开 [1]–[6]</b></summary>
 
-**[1] 为什么单机？** 船就是一台机器。单机 ES 去掉集群闲聊，839 测点 × 36 月占盘 <50 GB，断航也能活。靠岸组舰队时再加节点。
+**[1] 为什么单机？** 船就是一台机器。单机 ES 去掉集群闲聊，839 测点 × 36 月占盘约2TB，断航也能活。靠岸组舰队时再加节点。
 
 **[2] 排障**：`curl -sk -H "Authorization: Bearer $ES_TOKEN" https://localhost:9200/_cluster/health?pretty` 必须返回 `status: green`。若为 yellow/red，查未分配分片：`.../_cat/shards?v`。
 
 **[3] 提示词为什么放在脚本头注释里？** 5 个工作流智能体（环境、数据湖、推理、人机界面、标签重构）各有一段压缩提示词，放在对应脚本的头注释里，让仓库保持扁平、提示词与代码同行。
 
-**[4] 测点分类**：839 测点 = 673 PMS 报警 + 120 发动机参数 + 24 发电机 + 22 油柜及杂项。完整清单在 `upload/engine-one-tune-name-value.txt`。摄入脚本按 `name` 字段自动派生 `group`。
+**[4] 测点分类**：839 测点 = 673 PMS 报警 + 120 发动机参数 + 24 发电机 + 22 油柜及杂项。完整清单在 `data/engine-one-tune-name-value.jsonl`。摄入脚本按 `name` 字段自动派生 `group`。
 
 **[5] 轮换 `changeme`**：`curl -sk -u elastic:changeme -X POST https://localhost:9200/_security/user/_password -d '{"password":"<new>"}'`——然后重新生成 Bearer Token。连岸 WiFi 前务必做。
 
@@ -211,7 +209,7 @@ download/
 
 ## 10. 许可证
 
-MIT。见 `LICENSE`。839 测点样本 `upload/engine-one-tune-name-value.txt` 按原样提供，仅供评估。
+见 `MulanPSL.LICENSE`。一轮测点样本 `data/engine-one-tune-name-value.jsonl` 按原样提供，仅供评估。
 
 ---
 
