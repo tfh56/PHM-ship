@@ -1,0 +1,9 @@
+model,gt,metric,point,ci_lo,ci_hi
+CNN-TCN-Attention,filtered,f1,0.5019,0.4579,0.5438
+MSCNN-LSTMNet,filtered,f1,0.076,0.0333,0.1223
+RCF (unsupervised),filtered,f1,0.4242,0.3877,0.4606
+RCF (normal-profile),filtered,f1,0.4949,0.4511,0.5365
+RCF (unsupervised),filtered,auc,0.757,0.7304,0.7819
+RCF (normal-profile),filtered,auc,0.7777,0.752,0.8032
+RCF (unsupervised),original,auc,0.1741,0.1515,0.1977
+RCF (normal-profile),original,auc,0.1689,0.147,0.1918

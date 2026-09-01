@@ -1,208 +1,200 @@
-# Ship Telemetry Data Platform – Layman Operation Manual
+# 🚢 船舶遥测数据平台 — 小白操作说明
 
-## What Is This?
+## 这是什么？
 
-A data platform running on shipboard or shore\-side servers\. It automatically collects, stores, and analyzes engine and GPS acquisition data, triggers anomaly alerts, and answers user queries via an LLM assistant\.
+一套在船上（或岸上机器）运行的数据平台，把发动机和 GPS 的采集数据自动收集、存储、分析异常、报警，并通过大模型助理回答你的问题。
 
 ---
 
-## Prerequisites
+## 📋 你需要准备什么
 
-|No\.|Item|Description|
+| 序号 | 准备项 | 说明 |
 |---|---|---|
-|1|Linux Server|RAM ≥ 8GB, Disk ≥ 50GB|
-|2|root/sudo Privileges|Required for software installation|
-|3|Network Access|For downloading software \(offline operation supported post\-installation\)|
-|4|Raw Data Files|TXT files prefixed with `engine` and `imu`|
+| 1 | 一台 linux或者Windows配置WSL机器 | 内存 ≥ 8GB，磁盘 ≥ 50GB |
+| 2 | root/sudo 权限 | 安装软件用 |
+| 3 | 网络连接 | 下载软件用（装好后可以离线） |
+| 4 | 采集数据文件 | engine 和 imu 开头的 txt 文件 |
 
 ---
 
-## Installation Procedure \(3 Steps Total\)
+## 🚀 安装步骤（共 3 步）
 
-### Step 1: Transfer Scripts to Server
+### 第 1 步：把脚本放到服务器上
 
-Copy the entire `elk_stack` folder to your server, e\.g\., under `/home/YourUsername/`\.
+把 `PHM-ship` 文件夹拷机器上，比如放到 `/home/你的用户名/PHM-ship` 下。
 
-### Step 2: Execute Installation Script
+### 第 2 步：运行安装脚本
 
-Open terminal and run the following commands:
+打开终端（黑窗口），输入：
 
 ```bash
-cd ~/elk_stack
+cd ~/PHM-ship
 bash run_all.sh
 ```
 
-Wait for the process to complete \(10–20 minutes depending on network speed\)\. Ignore scrolling logs; installation succeeds if no red `[✗]` error tags appear in the final output\.
+然后等。大约 10-20 分钟（取决于网速）。屏幕上会不断滚动文字，**不用管**，只要最后没有红色的 `[✗]` 就行。
 
-### Step 3: Access via Web Browser
+### 第 3 步：打开浏览器访问
 
-After installation completes, enter the following address in your browser:
+安装完后，在浏览器输入：
 
-```Plain Text
-https://ServerIP:5601
+```
+https://服务器IP:5601
 ```
 
-- Username: `elastic`
-
-- Password: Displayed in the last lines of terminal output, also stored in `/data/elastic/.credentials` \(keep confidential\)
+用户名：`elastic`  
+密码：安装完会显示在终端最后几行（也会保存在 `PHM-ship/data/.credentials` 文件里）
 
 ---
 
-## Platform Capabilities After Deployment
+## 📊 装好后能干什么
 
-### Data Visualization Dashboard
+### 看数据
 
-|Target Data|Navigation Path in Kibana|
+| 想看什么 | 在 Kibana 里怎么找 |
 |---|---|
-|Ship Track|Dashboard → Vessel Track Dashboard|
-|Alarms|Dashboard → Engine Alarm Dashboard|
-|Anomalies|Dashboard → Anomaly Detection Dashboard|
-|Temperature Metrics|Dashboard → Engine Temperature Dashboard|
-|Fuel \& Lube Oil Data|Dashboard → Fuel \& Lube Oil Dashboard|
-|Rotational Speed|Dashboard → Speed \& RPM Dashboard|
+| 航迹 | Dashboard → 船舶航迹看板 |
+| 报警 | Dashboard → 发动机报警看板 |
+| 异常 | Dashboard → 异常检测看板 |
+| 温度 | Dashboard → 发动机温度看板 |
+| 燃油滑油 | Dashboard → 燃油滑油看板 |
+| 转速 | Dashboard → 速度转速看板 |
 
-### LLM Assistant Modules
+### 问助理
 
-Four built\-in LLM assistants with role\-adaptive automatic identification \(no manual role switching required\):
+安装包里有 4 个大模型助理：
 
-|Assistant Role|Target User Group|Supported Queries|
+| 助理 | 适合谁 | 能问什么 |
 |---|---|---|
-|Captain Assistant|Ship Captain|"How is the navigation track?", "Any active alarms?", "Is the engine operating normally?"|
-|Crew Engineer Assistant|Marine Engineering Crew|"How to resolve high temperature on Cylinder 1?", "What does low lube oil pressure indicate?"|
-|R\&D Engineer Assistant|Technical Engineers|"24\-hour anomaly statistics", "Temperature trend analysis", "Export analytical reports"|
-|Service Provider Assistant|Maintenance Vendors|"Next scheduled maintenance date", "Spare parts requiring replacement"|
+| 船长助理 | 船长 | "航迹怎么样？""有报警吗？""发动机正常吗？" |
+| 船员助理 | 轮机船员 | "1号缸温度高怎么办？""滑油压力低什么意思？" |
+| 研发助理 | 工程师 | "24小时异常统计""温度趋势""导出报告" |
+| 服务商助理 | 维保商 | "下次保养什么时候？""哪些零件要换？" |
+
+系统会自动识别你是哪种角色，不需要手动选择。
 
 ---
 
-## Troubleshooting Guide
+## 🔧 常见问题
 
-### Q: Script fails mid\-execution
+### Q: 脚本跑到一半报错了
 
-**A:** Review red error logs for root causes:
+**A:** 看红色错误信息，常见原因：
+1. 磁盘不够 → 清理空间或换大磁盘
+2. 内存不够 → 在 `run_all.sh` 里把 `4g` 改成 `2g`
+3. 网络不通 → 检查能不能上网
 
-1. Insufficient disk storage – Free up disk space or upgrade storage hardware
+### Q: 访问不了 Kibana
 
-2. Insufficient memory – Modify memory allocation parameter from `4g` to `2g` inside `run_all.sh`
-
-3. Network disconnection – Verify internet connectivity
-
-### Q: Unable to access Kibana web UI
-
-**A:** Configure firewall port forwarding with corresponding commands:
-
+**A:** 检查防火墙：
 ```bash
-# Ubuntu
-sudo ufw allow 5601/tcp
-
-# CentOS
-sudo firewall-cmd --add-port=5601/tcp --permanent && sudo firewall-cmd --reload
+sudo ufw allow 5601/tcp   # Ubuntu
+sudo firewall-cmd --add-port=5601/tcp --permanent && sudo firewall-cmd --reload  # CentOS
 ```
 
-### Q: Access platform via custom domain name
+### Q: 想用域名访问
 
-**A:** Edit the following line in `run_all.sh`:
-
+**A:** 在 `run_all.sh` 里改这一行：
 ```bash
-MY_DOMAIN="your-domain.com"
+MY_DOMAIN="你的域名.com"
 ```
 
-### Q: Replace default SSL certificate with enterprise certificate
+### Q: 想换企业证书
 
-**A:** The script automatically pulls certificate tools from `atomgit.com/tfh56/ESLienseSigner`\. Manual installation command:
-
+**A:** 脚本自动从 `atomgit.com/tfh56/ESLienseSigner` 拉取了。如果想手动安装：
 ```bash
 cd /opt/elastic/ESLienseSigner
-bash install.sh --domain your-domain --ip ServerIP
+bash install.sh --domain 你的域名 --ip 你的IP
 ```
 
-### Q: Adjust data retention period
+### Q: 想改数据保留时间
 
-**A:** Navigate to Kibana → Stack Management → Index Lifecycle Policies, edit the policy named `ship-telemetry-policy`\.
+**A:** 在 Kibana → Stack Management → Index Lifecycle Policies 里改 `ship-telemetry-policy`。
 
 ---
 
-## Directory Structure Reference
+## 📁 目录说明
 
-|Path|Content Description|
+| 路径 | 内容 |
 |---|---|
-|`/opt/elastic/`|Main software installation directory|
-|`/data/elastic/`|Persistent data and log storage|
-|`/data/elastic/.credentials`|Login credential file \(strict confidentiality required\)|
-|`/data/ship_ingest/`|Raw data ingestion directory|
-|`/data/elastic/snapshots/`|System snapshot backup storage|
-|`/data/elastic/certs/`|SSL certificate storage directory|
+| `/opt/elastic/` | 软件安装目录 |
+| `/data/elastic/` | 数据和日志 |
+| `/data/elastic/.credentials` | 登录密码（保密！） |
+| `/data/ship_ingest/` | 原始数据摄入目录 |
+| `/data/elastic/snapshots/` | 快照备份 |
+| `/data/elastic/certs/` | SSL 证书 |
 
 ---
 
-## Daily Operation Commands
+## 🔄 日常操作命令
 
-### Service Start / Stop
+### 启动/停止服务
 
 ```bash
-# Start Elasticsearch
+# 启动 Elasticsearch
 sudo -u elastic /opt/elastic/elasticsearch-*/bin/elasticsearch -d -p /data/elastic/es.pid
 
-# Start Kibana
+# 启动 Kibana
 sudo -u elastic /opt/elastic/kibana-*/bin/kibana &
 
-# Stop Elasticsearch
+# 停止 Elasticsearch
 kill $(cat /data/elastic/es.pid)
 
-# Stop Kibana
+# 停止 Kibana
 kill $(cat /data/elastic/kibana.pid)
 ```
 
-### Data Query Commands
+### 查看数据
 
 ```bash
-# List all data streams
-curl -sk -u elastic:YourPassword https://localhost:9200/_data_stream
+# 查看数据流列表
+curl -sk -u elastic:你的密码 https://localhost:9200/_data_stream
 
-# List all indices
-curl -sk -u elastic:YourPassword https://localhost:9200/_cat/indices?v
+# 查看索引列表
+curl -sk -u elastic:你的密码 https://localhost:9200/_cat/indices?v
 
-# Query engine temperature anomaly detection results
-curl -sk -u elastic:YourPassword "https://localhost:9200/_ml/anomaly_detectors/ship-engine-temperature-anomaly/results"
+# 查看异常检测结果
+curl -sk -u elastic:你的密码 "https://localhost:9200/_ml/anomaly_detectors/ship-engine-temperature-anomaly/results"
 
-# Fetch latest 10 engine telemetry records (sorted by timestamp descending)
-curl -sk -u elastic:YourPassword "https://localhost:9200/logs-ship-engine-default/_search?size=10&sort=@timestamp:desc"
+# 查看最新 10 条发动机数据
+curl -sk -u elastic:你的密码 "https://localhost:9200/logs-ship-engine-default/_search?size=10&sort=@timestamp:desc"
 ```
 
-### Import New Raw Data
+### 摄入新数据
 
 ```bash
-# Import engine data JSON file
+# 摄入新的发动机数据文件
 export ES_URL="https://localhost:9200"
 export ES_USER="elastic"
-export ES_PASS="YourPassword"
+export ES_PASS="你的密码"
 export ENGINE_FILE="/path/to/new_engine_data.json"
 python3 /opt/elastic/ingest_data.py
 
-# Convert raw IMU TXT data to standard ingestion format
+# 转换新的 IMU 数据
 python3 /opt/elastic/convert_imu.py /path/to/imu_raw.txt /data/ship_ingest/imu
 ```
 
 ---
 
-## LLM Integration Guide \(GLM Series\)
+## 🤖 接入 GLM 大模型
 
-### Connect Local LLM Service via llama\.cpp \(Qwen3 Example\)
+### 连接 llama.cpp（Qwen3）
 
 ```bash
-# Install llama.cpp (skip if already deployed)
+# 安装 llama.cpp（如果还没有）
 git clone https://github.com/ggml-org/llama.cpp.git
 cd llama.cpp && make -j
 
-# Download Qwen3 GGUF model
+# 下载 Qwen3 模型（举例）
 huggingface-cli download Qwen/Qwen3-8B-GGUF qwen3-8b-q4_k_m.gguf --local-dir ./models
 
-# Launch local LLM inference service
+# 启动 llama.cpp 服务
 ./llama-server -m models/qwen3-8b-q4_k_m.gguf --port 8080 --ctx-size 8192
 ```
 
-### MCP Connector Configuration for Elasticsearch
+### MCP 连接配置
 
-Add the following JSON configuration to Elasticsearch settings:
+在 Elasticsearch 配置中添加 MCP connector：
 
 ```json
 {
@@ -214,168 +206,161 @@ Add the following JSON configuration to Elasticsearch settings:
 }
 ```
 
-### GLM Prompt Storage Path
+### GLM 提示语（已内置 4 个角色）
 
-Predefined role prompts are stored in `/opt/elastic/glm_prompts.json` and editable on demand\.
+提示语配置在 `/opt/elastic/glm_prompts.json`，可以根据需要修改。
 
 ---
 
-## Advanced Extension Operations
+## 📐 功能拓展命令
 
-### Regenerate SSL Certificate for New Domain/IP
+### 更换 HTTP SSL 访问地址
 
 ```bash
-# Navigate to certificate directory
+# 生成新证书（含新域名/IP）
 cd /data/elastic/certs
 
-# Generate SAN configuration file with updated domain & IP
+# 编辑 san.cnf，添加新域名
 cat > san.cnf << 'EOF'
 [req]
 distinguished_name = req_distinguished_name
 req_extensions = v3_req
 [req_distinguished_name]
-CN = new-domain.com
+CN = 新域名.com
 [v3_req]
 subjectAltName = @alt_names
 [alt_names]
-DNS.1 = new-domain.com
-DNS.2 = *.new-domain.com
-IP.1 = NewServerIP
+DNS.1 = 新域名.com
+DNS.2 = *.新域名.com
+IP.1 = 新IP地址
 EOF
 
-# Generate CSR and private key
+# 重新生成证书
 openssl req -new -keyout ship.key -out ship.csr -config san.cnf -nodes
-
-# Issue signed certificate valid for 365 days
 openssl x509 -req -in ship.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out ship.crt -days 365 -extensions v3_req -extfile san.cnf
 
-# Export PKCS12 certificate bundle
+# 转 PKCS12
 openssl pkcs12 -export -in ship.crt -inkey ship.key -out /opt/elastic/elasticsearch-*/config/certs/ship.p12 -passout pass:ShipCert@2026 -chain -CAfile ca.crt
 
-# Restart Elasticsearch to apply new certificate
+# 重启 ES
 kill $(cat /data/elastic/es.pid) && sleep 5
 sudo -u elastic /opt/elastic/elasticsearch-*/bin/elasticsearch -d -p /data/elastic/es.pid
 ```
 
-### Install Enterprise Certificate via ESLienseSigner
+### 安装企业证书（atomgit tfh56/ESLienseSigner）
 
 ```bash
-# Pull certificate signing tool repository
+# 拉取工具
 git clone https://atomgit.com/tfh56/ESLienseSigner.git /opt/elastic/ESLienseSigner
 
-# Execute enterprise certificate installation script
+# 安装企业证书
 cd /opt/elastic/ESLienseSigner
 bash install.sh \
   --domain ship.yourcompany.com \
-  --ip ServerIP \
+  --ip 你的IP \
   --es-home /opt/elastic/elasticsearch-* \
   --cert-dir /data/elastic/certs
 
-# Restart Elasticsearch service
+# 重启 ES
 kill $(cat /data/elastic/es.pid) && sleep 5
 sudo -u elastic /opt/elastic/elasticsearch-*/bin/elasticsearch -d -p /data/elastic/es.pid
 ```
 
-### Fleet Agent Policy Configuration
+### 配置 Fleet Agent 策略
 
-Navigate to Kibana → Fleet → Agent Policies and complete the following steps:
+在 Kibana → Fleet → Agent Policies 里创建策略：
 
-1. Click "Create agent policy"
+1. 点击 "Create agent policy"
+2. 命名 `ship-engine-monitoring`
+3. 添加集成：
+   - Custom Logs（发动机 JSONL 日志）
+   - Custom Logs（IMU GPS 日志）
+   - System（系统监控）
+4. 配置日志路径：
+   - 发动机: `/data/ship_ingest/engine_*.json`
+   - IMU: `/data/ship_ingest/imu_*.txt`
+5. 保存并分配给 Agent
 
-2. Name policy `ship-engine-monitoring`
+### 配置报警规则
 
-3. Add required integrations:
+在 Kibana → Stack Management → Rules and Connectors：
 
-    - Custom Logs \(engine JSONL telemetry logs\)
-
-    - Custom Logs \(IMU \& GPS raw logs\)
-
-    - System \(server host monitoring\)
-
-4. Configure log file paths:
-
-    - Engine logs: `/data/ship_ingest/engine_*.json`
-
-    - IMU logs: `/data/ship_ingest/imu_*.txt`
-
-5. Save policy and assign to target Fleet Agents
-
-### Alarm Rule Configuration
-
-Navigate to Kibana → Stack Management → Rules and Connectors:
-
-1. Create new alert rule
-
-2. Trigger condition: `anomaly_score > 75` from detector `ship-engine-temperature-anomaly`
-
-3. Notification delivery channels: Webhook / Email / SMS
-
-4. Execution frequency: Check every 5 minutes
+1. 创建新规则
+2. 条件：`当 ship-engine-temperature-anomaly 的 anomaly_score > 75`
+3. 动作：发送到 webhook / 邮件 / 短信
+4. 频率：每 5 分钟检查一次
 
 ---
 
-## Full Predefined GLM Role Prompts
+## 🧠 GLM 提示语合集
 
-### Captain Assistant Prompt
+以下是内置的 4 个角色助理的 GLM 提示语，可直接用于 MCP 连接：
 
-```Plain Text
-You are a dedicated vessel captain assistant. You can retrieve navigation track, speed and heading data and provide professional navigation recommendations.
-All vessel operational data is fetched from Elasticsearch. Keep replies concise and industry-standard.
-- For track queries: Retrieve data stream logs-ship-imu-default, return latitude, longitude and vessel speed.
-- For alarm queries: Fetch latest records with category=alarm from logs-ship-engine-default.
-- For engine status queries: Pull real-time temperature, pressure and RPM metrics from logs-ship-engine-default.
+### 船长助理提示语
 
-Sample Dialogue:
-User: How is the current navigation track?
-Assistant: Querying track data from the last 30 minutes... Current heading XXX°, speed XX knots, Position: N XX.XX°, E XXX.XX°.
-User: Are there any recent alarms?
-Assistant: X alarms triggered within past 24 hours, including X temperature alarms and X pressure alarms. The most critical alert is...
+```
+你是船舶船长助理。你能查看航迹、航速、航向数据，提供航行建议。
+当前船舶数据从Elasticsearch获取。回复简洁专业。
+
+当被问到航迹时，查询 logs-ship-imu-default 数据流，返回经纬度和航速。
+当被问到报警时，查询 logs-ship-engine-default 中 category=alarm 的最新记录。
+当被问到发动机状态时，查询 logs-ship-engine-default 最新温度、压力、转速数据。
+
+示例对话：
+用户：当前航迹怎么样？
+助手：正在查询最近30分钟的航迹数据... 当前航向 XXX°，航速 XX 节，位置：北纬XX.XX°，东经XXX.XX°。
+用户：最近有报警吗？
+助手：过去24小时有 X 条报警，其中：温度报警 X 条，压力报警 X 条。最严重的是...
 ```
 
-### Marine Engineer Crew Assistant Prompt
+### 船员助理提示语
 
-```Plain Text
-You are an engineering crew assistant for marine machinery operators. Explain alarm root causes, standard operating procedures and maintainer log guidance. Use plain language with minimal complex technical jargon.
-- When asked about alarm definitions: Explain failure causes and step-by-step resolution workflows.
-- When asked about troubleshooting: List actionable operational steps.
-- When requesting daily alarm overview: Output complete daily alarm inventory.
+```
+你是船舶轮机船员助理。帮助船员理解报警内容、操作设备、记录值班日志。
+回复要通俗易懂，避免专业术语。
 
-Sample Dialogue:
-User: How do I resolve high temperature on Cylinder 1?
-Assistant: Elevated Cylinder 1 temperature potential causes & countermeasures:
-1. Verify cooling water flow rate
-2. Inspect fuel injector for leakage
-3. Reduce engine load and monitor temperature fluctuations
-If temperature exceeds alarm threshold, immediately lower vessel speed and notify chief engineer.
+当船员问"XX报警什么意思"时，解释报警原因和处置方法。
+当船员问"XX怎么办"时，给出操作步骤。
+当船员问"今天有什么报警"时，列出今天的报警清单。
+
+示例：
+用户：1号缸温度高怎么办？
+助手：1号缸温度偏高，可能原因和处置：
+1. 检查冷却水流量是否正常
+2. 检查喷油器是否漏油
+3. 降低负荷观察温度变化
+如果温度超过报警值，建议立即降速并联系轮机长。
 ```
 
-### R\&D Engineer Assistant Prompt
+### 研发助理提示语
 
-```Plain Text
-You are a ship R&D engineering assistant responsible for data analysis, anomaly statistics and trend reporting. Utilize professional technical terminology and suggest visualization charts when applicable.
-- Statistical requests: Run Elasticsearch aggregation queries for quantitative metrics.
-- Trend analysis requests: Fetch time-series data and machine learning anomaly detection results.
-- Report export requests: Generate standardized Markdown analytical reports.
+```
+你是船舶研发工程师助理。提供数据分析、异常统计、趋势报告。
+使用专业术语，输出图表建议。
 
-Supported internal tools:
-- search_es: Query Elasticsearch raw data
-- get_anomaly_stats: Aggregate full anomaly statistics
-- get_trend: Extract time-series trend datasets
-- export_report: Generate downloadable analysis reports
+当被要求统计时，查询 Elasticsearch 聚合数据。
+当被要求趋势分析时，查询时序数据和 ML 异常检测结果。
+当被要求导出报告时，生成 Markdown 格式报告。
+
+工具：
+- search_es：查询 ES 数据
+- get_anomaly_stats：获取异常统计
+- get_trend：获取趋势数据
+- export_report：导出分析报告
 ```
 
-### Maintenance Service Provider Assistant Prompt
+### 服务商助理提示语
 
-```Plain Text
-You are a vessel maintenance service assistant delivering maintenance scheduling, remote fault diagnosis and spare part recommendations based on full equipment runtime telemetry data.
-- Maintenance inquiries: Cross-reference historical service logs and real-time equipment operating status.
-- Spare part inquiries: Recommend replacement components by matching anomaly detection outputs.
-- Remote diagnosis requests: Pull live real-time data and historical fault records from Elasticsearch.
-
-Supported internal tools:
-- get_maintenance_history: Retrieve complete service maintenance logs
-- get_parts_list: Generate matched spare part replacement list
-- schedule_maintenance: Create optimized maintenance work plans
 ```
+你是船舶服务商助理。提供维保建议、远程诊断、备件推荐。
+基于设备运行数据给出建议。
 
-> （注：部分内容可能由 AI 生成）
+当被问到保养时，查询历史维护记录和当前设备状态。
+当被问到备件时，根据异常检测推荐备件。
+当被要求远程诊断时，连接 ES 查看实时数据和异常。
+
+工具：
+- get_maintenance_history：维保历史
+- get_parts_list：备件推荐
+- schedule_maintenance：安排维保计划
+```

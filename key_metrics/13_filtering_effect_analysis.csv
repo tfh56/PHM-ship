@@ -1,0 +1,9 @@
+item,value
+GT_overlap,"both=111, orig_only=866, filt_only=1152, Jaccard=0.052 — nearly disjoint"
+alarm_channels,"673 -> 24 fault-relevant (593 never-fired, 11 always-on, 38 mode/status, 7 glitch)"
+CNN-TCN-Attention,F1 orig=0.0 -> filt=0.5019
+MSCNN-LSTMNet,F1 orig=0.0 -> filt=0.076
+RCF unsupervised,F1 orig=0.1661 -> filt=0.4287; AUC 0.183 -> 0.760
+RCF normal-profile,F1 orig=0.0 -> filt=0.4994; AUC 0.178 -> 0.779
+interpretation,"Original density GT labeled maneuvering storm (blocks 4-7, mode/status alarms); telemetry-space anomalies INVERTED vs it (AUC<0.2). Filtered GT labels true faults (comm timeout, exhaust temp, fire controller) aligned with telemetry (AUC 0.76-0.78)."
+verdict,"EFFECTIVE: alarm filtering changed unlearnable labels (F1=0, AUC~0.18) into learnable fault detection task (best F1=0.50, AUC=0.78) across ALL algorithms."

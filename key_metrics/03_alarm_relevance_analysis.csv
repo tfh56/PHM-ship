@@ -1,0 +1,674 @@
+alarm_tag,active_samples,active_rate_pct,category,decision,reason,fault_class,fault_class_name
+engine/alarm_220v_power_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_24v_power_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_ac_auxiliary_heat_mode,6403,99.984,always_on,REMOVE,"active 100.0% of time (constant offset, mode/status)",F00,Other / General Fault
+engine/alarm_ac_cooling_mode,6403,99.984,always_on,REMOVE,"active 100.0% of time (constant offset, mode/status)",F03,Cooling System Fault
+engine/alarm_ac_heating_mode,6403,99.984,always_on,REMOVE,"active 100.0% of time (constant offset, mode/status)",F00,Other / General Fault
+engine/alarm_ac_software_on_off,6403,99.984,always_on,REMOVE,"active 100.0% of time (constant offset, mode/status)",F00,Other / General Fault
+engine/alarm_air_compressor_overload,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_air_compressor_running,279,4.357,mode_status,REMOVE,"operational state indicator ('air_compressor_running'), not a fault signal",F00,Other / General Fault
+engine/alarm_anti_roll_fins_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_anti_roll_fins_running,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_automatic_phone_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_battery_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_bottle_outlet_pipe_low_pressure,3299,51.515,fault_relevant,KEEP,"fault alarm, fires 3299 samples (51.5%), class F00",F00,Other / General Fault
+engine/alarm_bow_peak_tank_high_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_cathodic_protection_system_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_circulation_pump_flow_switch,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_circulation_pump_overload,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_co2_leakage,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_co2_power_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_co2_pre_release,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_co2_release,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_compressor_1_high_pressure_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_compressor_1_low_pressure_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_compressor_1_overload,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_compressor_2_high_pressure_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_compressor_2_low_pressure_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_compressor_2_overload,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_cylinder_exhaust_temperature_high,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_cylinder_exhaust_temperature_high_2,135,2.108,fault_relevant,KEEP,"fault alarm, fires 135 samples (2.1%), class F10",F10,Cylinder Exhaust Temp High
+engine/alarm_cylinder_exhaust_temperature_too_high,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_cylinder_exhaust_temperature_too_high_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_dedicated_ballast_pump_starter_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_embedded_host_telegraph_power_failure,2110,32.948,fault_relevant,KEEP,"fault alarm, fires 2110 samples (32.9%), class F11",F11,Communication / Sensor Fault
+engine/alarm_emergency_charge_discharge_board_battery_voltage_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_emergency_charge_discharge_board_discharge,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_emergency_charge_discharge_board_insulation_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_empty_tank_c_high_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_engine_room_a_high_level,792,12.367,fault_relevant,KEEP,"fault alarm, fires 792 samples (12.4%), class F00",F00,Other / General Fault
+engine/alarm_fire_alarm_controller_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F12,Fire Alarm
+engine/alarm_fire_alarm_controller_fire,668,10.431,fault_relevant,KEEP,"fault alarm, fires 668 samples (10.4%), class F12",F12,Fire Alarm
+engine/alarm_freshwater_combination_pressure_tank_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_freshwater_heater_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_freshwater_heater_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_freshwater_heater_running_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_freshwater_heater_running_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_freshwater_pump_running_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_freshwater_pump_running_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_freshwater_tank_low_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_general_emergency_power_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_generator_1_comprehensive_alarm,5356,83.635,fault_relevant,KEEP,"fault alarm, fires 5356 samples (83.6%), class F06",F06,Generator Fault
+engine/alarm_generator_1_emergency_stop,5356,83.635,mode_status,REMOVE,"operational state indicator ('emergency_stop'), not a fault signal",F06,Generator Fault
+engine/alarm_generator_1_fuel_leak,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_1_high_oil_temperature_pre_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_1_high_speed_alarm_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_1_high_speed_pre_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_1_high_water_temperature_pre_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_1_low_oil_pressure_alarm_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_generator_1_low_oil_pressure_pre_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_generator_1_power_1_voltage_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_1_power_2_voltage_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_1_running_status,1032,16.115,mode_status,REMOVE,"operational state indicator ('running_status'), not a fault signal",F06,Generator Fault
+engine/alarm_generator_1_shutdown_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_1_shutdown_status,5359,83.682,mode_status,REMOVE,"operational state indicator ('shutdown_status'), not a fault signal",F06,Generator Fault
+engine/alarm_generator_1_shutting_down,1,0.016,transient_glitch,REMOVE,"only 1 samples (<63ms, noise burst)",F06,Generator Fault
+engine/alarm_generator_1_start_allowed,1,0.016,transient_glitch,REMOVE,"only 1 samples (<63ms, noise burst)",F06,Generator Fault
+engine/alarm_generator_1_start_successful,1044,16.302,mode_status,REMOVE,"operational state indicator ('start_successful'), not a fault signal",F06,Generator Fault
+engine/alarm_generator_1_three_starts_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_2_comprehensive_alarm,800,12.492,fault_relevant,KEEP,"fault alarm, fires 800 samples (12.5%), class F06",F06,Generator Fault
+engine/alarm_generator_2_emergency_stop,800,12.492,mode_status,REMOVE,"operational state indicator ('emergency_stop'), not a fault signal",F06,Generator Fault
+engine/alarm_generator_2_fuel_leak,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_2_high_oil_temperature_pre_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_2_high_speed_alarm_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_2_high_speed_pre_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_2_high_water_temperature_pre_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_2_low_oil_pressure_alarm_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_generator_2_low_oil_pressure_pre_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_generator_2_power_1_voltage_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_2_power_2_voltage_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_2_running_status,5603,87.492,mode_status,REMOVE,"operational state indicator ('running_status'), not a fault signal",F06,Generator Fault
+engine/alarm_generator_2_shutdown_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_2_shutdown_status,800,12.492,mode_status,REMOVE,"operational state indicator ('shutdown_status'), not a fault signal",F06,Generator Fault
+engine/alarm_generator_2_shutting_down,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_2_start_allowed,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_generator_2_start_successful,5603,87.492,mode_status,REMOVE,"operational state indicator ('start_successful'), not a fault signal",F06,Generator Fault
+engine/alarm_generator_2_three_starts_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F06,Generator Fault
+engine/alarm_grey_water_pump_starter_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_grey_water_tank_high_level,33,0.515,fault_relevant,KEEP,"fault alarm, fires 33 samples (0.5%), class F00",F00,Other / General Fault
+engine/alarm_left_main_battery_float_charge_comprehensive_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_left_main_remote_control_backup_power_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_left_main_remote_control_comprehensive_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_left_main_remote_control_control_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_left_main_remote_control_main_power_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_lube_oil_transfer_pump_starter_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_1_basic_turbocharger_1_speed_high,0,0.0,never_triggered,REMOVE,never fired in 24h,F05,Turbocharger Fault
+engine/alarm_main_engine_1_basic_turbocharger_2_speed_high,0,0.0,never_triggered,REMOVE,never fired in 24h,F05,Turbocharger Fault
+engine/alarm_main_engine_1_bearing_temperature_deviation_large_l1,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_deviation_large_l10,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_deviation_large_l2,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_deviation_large_l3,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_deviation_large_l4,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_deviation_large_l5,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_deviation_large_l6,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_deviation_large_l7,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_deviation_large_l8,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_deviation_large_l9,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_high_l1,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_high_l10,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_high_l2,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_high_l3,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_high_l4,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_high_l5,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_high_l6,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_high_l7,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_high_l8,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_high_l9,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_sensor_fault_l1,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_bearing_temperature_sensor_fault_l10,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_bearing_temperature_sensor_fault_l2,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_bearing_temperature_sensor_fault_l3,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_bearing_temperature_sensor_fault_l4,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_bearing_temperature_sensor_fault_l5,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_bearing_temperature_sensor_fault_l6,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_bearing_temperature_sensor_fault_l7,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_bearing_temperature_sensor_fault_l8,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_bearing_temperature_sensor_fault_l9,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_bearing_temperature_too_high_l1,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_too_high_l10,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_too_high_l2,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_too_high_l3,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_too_high_l4,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_too_high_l5,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_too_high_l6,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_too_high_l7,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_too_high_l8,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_bearing_temperature_too_high_l9,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_charging_indicator,2908,45.409,mode_status,REMOVE,"operational state indicator ('charging_indicator'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_1_comprehensive_fault,480,7.495,fault_relevant,KEEP,"fault alarm, fires 480 samples (7.5%), class F00",F00,Other / General Fault
+engine/alarm_main_engine_1_crankcase_pressure_high_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_a1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_a10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_a2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_a3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_a4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_a5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_a6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_a7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_a8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_a9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_b1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_b10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_b2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_b3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_b4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_b5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_b6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_b7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_b8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_deviation_large_b9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_a1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_a10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_a2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_a3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_a4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_a5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_a6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_a7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_a8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_a9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_b1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_b10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_b2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_b3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_b4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_b5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_b6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_b7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_b8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_high_b9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_a1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_a10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_a2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_a3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_a4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_a5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_a6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_a7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_a8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_a9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_b1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_b10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_b2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_b3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_b4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_b5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_b6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_b7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_b8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_exhaust_temperature_too_high_b9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_a1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_a10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_a2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_a3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_a4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_a5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_a6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_a7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_a8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_a9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_b1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_b10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_b2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_b3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_b4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_b5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_b6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_b7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_b8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_cylinder_temperature_sensor_fault_b9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_ecu_communication_timeout,2418,37.758,fault_relevant,KEEP,"fault alarm, fires 2418 samples (37.8%), class F11",F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_ecu_comprehensive_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_ecu_speed_fault_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_ecu_speed_phase_fault_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_emergency_stop_status,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_exhaust_temperature_sensor_fault_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_exhaust_temperature_sensor_fault_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_1_expansion_tank_low_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_freshwater_preheating,818,12.773,mode_status,REMOVE,"operational state indicator ('preheating'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_1_freshwater_pressure_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_freshwater_pressure_sensor_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_freshwater_pressure_too_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_freshwater_temperature_high,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_freshwater_temperature_high_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_freshwater_temperature_sensor_fault_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_freshwater_temperature_sensor_fault_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_freshwater_temperature_too_high_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_freshwater_temperature_too_high_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_fuel_leak,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_gearbox_control_oil_pressure_too_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_1_injector_fault_a1,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_a10,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_a2,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_a3,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_a4,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_a5,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_a6,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_a7,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_a8,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_a9,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_b1,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_b10,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_b2,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_b3,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_b4,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_b5,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_b6,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_b7,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_b8,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_b9,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_injector_fault_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_1_load_reduction_request,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_local_mode,3520,54.966,mode_status,REMOVE,"operational state indicator ('local_mode'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_1_lube_oil_filter_pressure_difference_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_1_lube_oil_filter_pressure_high,480,7.495,fault_relevant,KEEP,"fault alarm, fires 480 samples (7.5%), class F02",F02,Lubricating Oil System Fault
+engine/alarm_main_engine_1_lube_oil_pre_supply,309,4.825,mode_status,REMOVE,"operational state indicator ('pre_supply'), not a fault signal",F02,Lubricating Oil System Fault
+engine/alarm_main_engine_1_lube_oil_pressure_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_1_lube_oil_pressure_too_low_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_1_lube_oil_temperature_high,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_1_lube_oil_temperature_sensor_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_main_bearing_temperature_deviation_large_comprehensive,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_main_bearing_temperature_high_comprehensive,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_main_bearing_temperature_monitoring_module_communication_timeout,2659,41.521,fault_relevant,KEEP,"fault alarm, fires 2659 samples (41.5%), class F11",F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_main_bearing_temperature_too_high_stop_comprehensive,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_1_over_speed_alarm_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_override_status,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_post_fuel_pressure_sensor_fault,207,3.232,fault_relevant,KEEP,"fault alarm, fires 207 samples (3.2%), class F11",F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_post_lube_oil_pressure_sensor_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_pre_lube_oil_pressure_sensor_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_primary_comprehensive_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_ready_to_start,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_remote_mode,2883,45.019,mode_status,REMOVE,"operational state indicator ('remote_mode'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_1_running_status,2908,45.409,mode_status,REMOVE,"operational state indicator ('running_status'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_1_safety_system_comprehensive_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_safety_system_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_safety_system_sensor_line_comprehensive_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_sea_water_pressure_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_sea_water_pressure_sensor_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_secondary_comprehensive_alarm,480,7.495,fault_relevant,KEEP,"fault alarm, fires 480 samples (7.5%), class F00",F00,Other / General Fault
+engine/alarm_main_engine_1_start_energy_insufficient,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_start_interlock,2753,42.989,mode_status,REMOVE,"operational state indicator ('start_interlock'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_1_stop_alarm_before_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_stop_status,3495,54.575,mode_status,REMOVE,"operational state indicator ('stop_status'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_1_track_pressure_high_fault_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_track_pressure_low_fault_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_1_track_pressure_sensor_a_signal_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_track_pressure_sensor_b_signal_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_turbocharger_air_pressure_sensor_fault_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_turbocharger_air_pressure_sensor_fault_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_turbocharger_air_temperature_sensor_fault_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_turbocharger_air_temperature_sensor_fault_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_turbocharger_lube_oil_inlet_pressure_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_1_turbocharger_lube_oil_inlet_pressure_sensor_fault,6403,99.984,always_on,REMOVE,"active 100.0% of time (constant offset, mode/status)",F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_turbocharger_lube_oil_outlet_temperature_high_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_1_turbocharger_lube_oil_outlet_temperature_high_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_1_turbocharger_lube_oil_outlet_temperature_sensor_fault_a,6403,99.984,always_on,REMOVE,"active 100.0% of time (constant offset, mode/status)",F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_turbocharger_lube_oil_outlet_temperature_sensor_fault_b,6403,99.984,always_on,REMOVE,"active 100.0% of time (constant offset, mode/status)",F11,Communication / Sensor Fault
+engine/alarm_main_engine_1_unoverridable_stop_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_basic_turbocharger_1_speed_high,0,0.0,never_triggered,REMOVE,never fired in 24h,F05,Turbocharger Fault
+engine/alarm_main_engine_2_basic_turbocharger_2_speed_high,0,0.0,never_triggered,REMOVE,never fired in 24h,F05,Turbocharger Fault
+engine/alarm_main_engine_2_bearing_temperature_deviation_large_l1,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_deviation_large_l10,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_deviation_large_l2,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_deviation_large_l3,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_deviation_large_l4,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_deviation_large_l5,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_deviation_large_l6,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_deviation_large_l7,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_deviation_large_l8,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_deviation_large_l9,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_high_l1,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_high_l10,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_high_l2,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_high_l3,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_high_l4,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_high_l5,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_high_l6,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_high_l7,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_high_l8,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_high_l9,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_sensor_fault_l1,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_bearing_temperature_sensor_fault_l10,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_bearing_temperature_sensor_fault_l2,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_bearing_temperature_sensor_fault_l3,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_bearing_temperature_sensor_fault_l4,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_bearing_temperature_sensor_fault_l5,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_bearing_temperature_sensor_fault_l6,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_bearing_temperature_sensor_fault_l7,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_bearing_temperature_sensor_fault_l8,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_bearing_temperature_sensor_fault_l9,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_bearing_temperature_too_high_l1,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_too_high_l10,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_too_high_l2,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_too_high_l3,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_too_high_l4,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_too_high_l5,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_too_high_l6,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_too_high_l7,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_too_high_l8,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_bearing_temperature_too_high_l9,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_charging_indicator,2912,45.472,mode_status,REMOVE,"operational state indicator ('charging_indicator'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_2_comprehensive_fault,137,2.139,fault_relevant,KEEP,"fault alarm, fires 137 samples (2.1%), class F00",F00,Other / General Fault
+engine/alarm_main_engine_2_crankcase_pressure_high_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_a1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_a10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_a2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_a3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_a4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_a5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_a6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_a7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_a8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_a9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_b1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_b10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_b2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_b3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_b4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_b5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_b6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_b7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_b8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_deviation_large_b9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_a1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_a10,22,0.344,fault_relevant,KEEP,"fault alarm, fires 22 samples (0.3%), class F10",F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_a2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_a3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_a4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_a5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_a6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_a7,20,0.312,fault_relevant,KEEP,"fault alarm, fires 20 samples (0.3%), class F10",F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_a8,21,0.328,fault_relevant,KEEP,"fault alarm, fires 21 samples (0.3%), class F10",F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_a9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_b1,132,2.061,fault_relevant,KEEP,"fault alarm, fires 132 samples (2.1%), class F10",F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_b10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_b2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_b3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_b4,21,0.328,fault_relevant,KEEP,"fault alarm, fires 21 samples (0.3%), class F10",F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_b5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_b6,20,0.312,fault_relevant,KEEP,"fault alarm, fires 20 samples (0.3%), class F10",F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_b7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_b8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_high_b9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_a1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_a10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_a2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_a3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_a4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_a5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_a6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_a7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_a8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_a9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_b1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_b10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_b2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_b3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_b4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_b5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_b6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_b7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_b8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_exhaust_temperature_too_high_b9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_a1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_a10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_a2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_a3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_a4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_a5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_a6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_a7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_a8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_a9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_b1,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_b10,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_b2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_b3,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_b4,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_b5,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_b6,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_b7,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_b8,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_cylinder_temperature_sensor_fault_b9,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_ecu_communication_timeout,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_ecu_comprehensive_fault,2,0.031,transient_glitch,REMOVE,"only 2 samples (<63ms, noise burst)",F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_ecu_speed_fault_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_ecu_speed_phase_fault_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_emergency_stop_status,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_exhaust_temperature_sensor_fault_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_exhaust_temperature_sensor_fault_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_main_engine_2_expansion_tank_low_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_freshwater_preheating,848,13.242,mode_status,REMOVE,"operational state indicator ('preheating'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_2_freshwater_pressure_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_freshwater_pressure_sensor_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_freshwater_pressure_too_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_freshwater_temperature_high,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_freshwater_temperature_high_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_freshwater_temperature_sensor_fault_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_freshwater_temperature_sensor_fault_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_freshwater_temperature_too_high_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_freshwater_temperature_too_high_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_fuel_leak,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_gearbox_control_oil_pressure_too_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_2_injector_fault_a1,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_a10,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_a2,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_a3,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_a4,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_a5,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_a6,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_a7,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_a8,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_a9,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_b1,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_b10,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_b2,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_b3,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_b4,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_b5,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_b6,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_b7,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_b8,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_b9,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_injector_fault_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F04,Fuel Injection Fault
+engine/alarm_main_engine_2_load_reduction_request,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_local_mode,3519,54.95,mode_status,REMOVE,"operational state indicator ('local_mode'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_2_lube_oil_filter_pressure_difference_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_2_lube_oil_filter_pressure_high,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_2_lube_oil_pre_supply,307,4.794,mode_status,REMOVE,"operational state indicator ('pre_supply'), not a fault signal",F02,Lubricating Oil System Fault
+engine/alarm_main_engine_2_lube_oil_pressure_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_2_lube_oil_pressure_too_low_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_2_lube_oil_temperature_high,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_2_lube_oil_temperature_sensor_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_main_bearing_temperature_deviation_large_comprehensive,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_main_bearing_temperature_high_comprehensive,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_main_bearing_temperature_monitoring_module_communication_timeout,3461,54.044,fault_relevant,KEEP,"fault alarm, fires 3461 samples (54.0%), class F11",F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_main_bearing_temperature_too_high_stop_comprehensive,0,0.0,never_triggered,REMOVE,never fired in 24h,F01,Bearing Overheating
+engine/alarm_main_engine_2_over_speed_alarm_stop,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_override_status,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_post_fuel_pressure_sensor_fault,211,3.295,fault_relevant,KEEP,"fault alarm, fires 211 samples (3.3%), class F11",F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_post_lube_oil_pressure_sensor_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_pre_lube_oil_pressure_sensor_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_primary_comprehensive_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_ready_to_start,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_remote_mode,2884,45.034,mode_status,REMOVE,"operational state indicator ('remote_mode'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_2_running_status,2911,45.456,mode_status,REMOVE,"operational state indicator ('running_status'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_2_safety_system_comprehensive_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_safety_system_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_safety_system_sensor_line_comprehensive_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_sea_water_pressure_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_sea_water_pressure_sensor_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_secondary_comprehensive_alarm,137,2.139,fault_relevant,KEEP,"fault alarm, fires 137 samples (2.1%), class F00",F00,Other / General Fault
+engine/alarm_main_engine_2_start_energy_insufficient,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_start_interlock,2757,43.051,mode_status,REMOVE,"operational state indicator ('start_interlock'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_2_stop_alarm_before_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_stop_status,3492,54.528,mode_status,REMOVE,"operational state indicator ('stop_status'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_engine_2_track_pressure_high_fault_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_track_pressure_low_fault_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_engine_2_track_pressure_sensor_a_signal_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_track_pressure_sensor_b_signal_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_turbocharger_air_pressure_sensor_fault_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_turbocharger_air_pressure_sensor_fault_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_turbocharger_air_temperature_sensor_fault_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_turbocharger_air_temperature_sensor_fault_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_turbocharger_lube_oil_inlet_pressure_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_2_turbocharger_lube_oil_inlet_pressure_sensor_fault,6403,99.984,always_on,REMOVE,"active 100.0% of time (constant offset, mode/status)",F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_turbocharger_lube_oil_outlet_temperature_high_a,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_2_turbocharger_lube_oil_outlet_temperature_high_b,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_engine_2_turbocharger_lube_oil_outlet_temperature_sensor_fault_a,6403,99.984,always_on,REMOVE,"active 100.0% of time (constant offset, mode/status)",F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_turbocharger_lube_oil_outlet_temperature_sensor_fault_b,6403,99.984,always_on,REMOVE,"active 100.0% of time (constant offset, mode/status)",F11,Communication / Sensor Fault
+engine/alarm_main_engine_2_unoverridable_stop_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_bridge_control_effective_1,2869,44.8,mode_status,REMOVE,"operational state indicator ('control_effective'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_thrust_bridge_control_effective_2,2871,44.831,mode_status,REMOVE,"operational state indicator ('control_effective'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_thrust_bridge_panel_com_communication_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_bridge_panel_com_communication_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_bridge_panel_eth_communication_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_bridge_panel_eth_communication_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_central_control_effective_1,14,0.219,mode_status,REMOVE,"operational state indicator ('control_effective'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_thrust_central_control_effective_2,13,0.203,mode_status,REMOVE,"operational state indicator ('control_effective'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_thrust_central_panel_com_communication_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_central_panel_com_communication_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_central_panel_eth_communication_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_central_panel_eth_communication_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_emergency_stop_status_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_emergency_stop_status_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_gearbox_engage_state_1,2749,42.926,mode_status,REMOVE,"operational state indicator ('engage_state'), not a fault signal",F09,Gearbox Fault
+engine/alarm_main_thrust_gearbox_engage_state_2,2736,42.723,mode_status,REMOVE,"operational state indicator ('engage_state'), not a fault signal",F09,Gearbox Fault
+engine/alarm_main_thrust_gearbox_filter_pressure_difference_alarm_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F09,Gearbox Fault
+engine/alarm_main_thrust_gearbox_filter_pressure_difference_alarm_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F09,Gearbox Fault
+engine/alarm_main_thrust_gearbox_lube_oil_pressure_low_alarm_1,4,0.062,transient_glitch,REMOVE,"only 4 samples (<63ms, noise burst)",F02,Lubricating Oil System Fault
+engine/alarm_main_thrust_gearbox_lube_oil_pressure_low_alarm_2,1,0.016,transient_glitch,REMOVE,"only 1 samples (<63ms, noise burst)",F02,Lubricating Oil System Fault
+engine/alarm_main_thrust_gearbox_lube_oil_pressure_sensor_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_gearbox_lube_oil_pressure_sensor_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_gearbox_lube_oil_temperature_high_alarm_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_thrust_gearbox_lube_oil_temperature_high_alarm_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_thrust_gearbox_lube_oil_temperature_sensor_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_gearbox_lube_oil_temperature_sensor_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_gearbox_neutral_state_1,3647,56.949,mode_status,REMOVE,"operational state indicator ('neutral_state'), not a fault signal",F09,Gearbox Fault
+engine/alarm_main_thrust_gearbox_neutral_state_2,3644,56.902,mode_status,REMOVE,"operational state indicator ('neutral_state'), not a fault signal",F09,Gearbox Fault
+engine/alarm_main_thrust_gearbox_reverse_engage_state_1,4,0.062,transient_glitch,REMOVE,"only 4 samples (<63ms, noise burst)",F09,Gearbox Fault
+engine/alarm_main_thrust_gearbox_reverse_engage_state_2,20,0.312,mode_status,REMOVE,"operational state indicator ('engage_state'), not a fault signal",F09,Gearbox Fault
+engine/alarm_main_thrust_gearbox_working_oil_pressure_low_alarm_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_thrust_gearbox_working_oil_pressure_low_alarm_2,1,0.016,transient_glitch,REMOVE,"only 1 samples (<63ms, noise burst)",F02,Lubricating Oil System Fault
+engine/alarm_main_thrust_gearbox_working_oil_pressure_sensor_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_gearbox_working_oil_pressure_sensor_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_gearbox_working_oil_pressure_too_low_stop_alarm_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_thrust_gearbox_working_oil_pressure_too_low_stop_alarm_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F02,Lubricating Oil System Fault
+engine/alarm_main_thrust_host_fault_pre_alarm_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_host_fault_pre_alarm_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_host_fault_slowdown_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_host_fault_slowdown_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_host_fault_stop_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_host_fault_stop_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_host_fault_stop_non_override_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_host_fault_stop_non_override_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_host_running_1,2908,45.409,mode_status,REMOVE,"operational state indicator ('host_running'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_thrust_host_running_2,2911,45.456,mode_status,REMOVE,"operational state indicator ('host_running'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_thrust_host_speed_sensor_fault_feedback_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_host_speed_sensor_fault_feedback_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_remote_comprehensive_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_remote_comprehensive_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_remote_effective_1,2883,45.019,mode_status,REMOVE,"operational state indicator ('remote_effective'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_thrust_remote_effective_2,2884,45.034,mode_status,REMOVE,"operational state indicator ('remote_effective'), not a fault signal",F00,Other / General Fault
+engine/alarm_main_thrust_remote_override_status_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_remote_override_status_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_shaft_lock_effective_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_shaft_lock_effective_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_shaft_speed_sensor_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_shaft_speed_sensor_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_main_thrust_standby_operation_effective_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_standby_operation_effective_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_start_allowed_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_start_allowed_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_start_failure_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_main_thrust_start_failure_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_observation_tank_high_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_oily_water_pump_starter_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_oily_water_pump_starter_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_oily_water_tank_left_high_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_oily_water_tank_right_high_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pipe_tunnel_tank_49_high_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pipe_tunnel_tank_63_high_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_ac220v_insulation_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_ac380v_insulation_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_automatic_synchronization_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_auxiliary_room_fan_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_auxiliary_room_fan_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_auxiliary_room_fan_running_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_auxiliary_room_fan_running_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_ballast_total_use_pump_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_ballast_total_use_pump_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_ballast_total_use_pump_running_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_ballast_total_use_pump_running_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_cabin_fan_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_cabin_fan_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_cabin_fan_fault_3,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_cabin_fan_fault_4,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_cabin_fan_running_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_cabin_fan_running_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_cabin_fan_running_3,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_cabin_fan_running_4,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_dg1_acb_abnormal_trip,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_dg1_overload,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_dg1_reverse_power,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_dg1_start_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_dg2_acb_abnormal_trip,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_dg2_overload,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_dg2_reverse_power,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_dg2_start_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_fuel_transfer_pump_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_fuel_transfer_pump_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_fuel_transfer_pump_running_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_fuel_transfer_pump_running_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_gearbox_cooling_pump_fault_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F09,Gearbox Fault
+engine/alarm_pms_gearbox_cooling_pump_fault_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F09,Gearbox Fault
+engine/alarm_pms_gearbox_cooling_pump_running_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F09,Gearbox Fault
+engine/alarm_pms_gearbox_cooling_pump_running_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F09,Gearbox Fault
+engine/alarm_pms_left_main_board_backup_pump_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_left_main_board_backup_pump_running,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_left_main_board_pms_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_left_main_board_pre_trip_and_emergency_cut,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_left_main_board_public_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_load_distribution_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_main_busbar_frequency_abnormal,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_main_busbar_voltage_abnormal,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_priority_trip_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_priority_trip_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_right_main_board_backup_pump_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_right_main_board_backup_pump_running,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_right_main_board_pms_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_right_main_board_pre_trip_and_emergency_cut,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pms_right_main_board_public_alarm,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_pollution_protection_device_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_quick_closure_valve_low_pressure,6403,99.984,always_on,REMOVE,"active 100.0% of time (constant offset, mode/status)",F00,Other / General Fault
+engine/alarm_radio_charge_discharge_board_battery_voltage_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_radio_charge_discharge_board_discharge,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_radio_charge_discharge_board_insulation_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_right_main_battery_float_charge_comprehensive_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_right_main_remote_control_backup_power_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_right_main_remote_control_comprehensive_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_right_main_remote_control_control_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_right_main_remote_control_main_power_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_room_combination_alarm_light_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_room_combination_alarm_light_power_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_room_emergency_charge_discharge_board_battery_voltage_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_room_emergency_charge_discharge_board_discharge,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_room_emergency_charge_discharge_board_insulation_low,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_room_fan_combination_starter_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_rudder_room_tank_high_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_seawater_pump_flow_switch,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_seawater_pump_overload,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_sewage_pump_starter_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_sewage_tank_high_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_shaft_tunnel_tank_25_left_high_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_shaft_tunnel_tank_25_right_high_level,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_single_cylinder_exhaust_temperature_deviation_large_comprehensive,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_single_cylinder_exhaust_temperature_deviation_large_comprehensive_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_single_cylinder_exhaust_temperature_module_communication_timeout,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_single_cylinder_exhaust_temperature_module_communication_timeout_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F10,Cylinder Exhaust Temp High
+engine/alarm_ups1_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_ups1_main_power_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_ups2_fault,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_ups2_main_power_failure,0,0.0,never_triggered,REMOVE,never fired in 24h,F11,Communication / Sensor Fault
+engine/alarm_water_tight_door_open_1,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault
+engine/alarm_water_tight_door_open_2,0,0.0,never_triggered,REMOVE,never fired in 24h,F00,Other / General Fault

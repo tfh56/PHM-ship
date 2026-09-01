@@ -1,0 +1,2 @@
+comparison,f1_a,f1_b,delta,p_permutation,discordant_01,discordant_10,p_mcnemar_exact
+"CNN-TCN vs RCF-NP (F1, filtered)",0.5019,0.4949,0.007,0.0008,11,0,0.001

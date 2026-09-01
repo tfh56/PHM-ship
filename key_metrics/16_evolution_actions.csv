@@ -1,0 +1,16 @@
+iteration,action,skill_id,detail,reason
+2,CHANGE,SK-DIAG-F06,threshold 0.40->0.50,precision=0.44<0.50 (false triggers dominate)
+2,ADD,SK-DIAG-F06A,threshold=0.65,parent SK-DIAG-F06 overloaded (2116 triggers>800)
+2,ADD,SK-DIAG-F11A,threshold=0.65,parent SK-DIAG-F11 overloaded (902 triggers>800)
+3,DELETE,SK-DIAG-F01,status=deleted,0 triggers in iters 1-2
+3,CHANGE,SK-DIAG-F02,threshold 0.45->0.55,precision=0.15<0.50 (false triggers dominate)
+3,DELETE,SK-DIAG-F03,status=deleted,0 triggers in iters 1-2
+3,DELETE,SK-DIAG-F04,status=deleted,0 triggers in iters 1-2
+3,DELETE,SK-DIAG-F05,status=deleted,0 triggers in iters 1-2
+3,DELETE,SK-DIAG-F07,status=deleted,0 triggers in iters 1-2
+3,DELETE,SK-DIAG-F09,status=deleted,0 triggers in iters 1-2
+3,CHANGE,SK-DIAG-F12,threshold 0.35->0.45,precision=0.20<0.50 (false triggers dominate)
+3,CHANGE,SK-DIAG-F06A,threshold 0.65->0.60,coverage=0.00<0.50 (missing true events)
+3,DELETE,SK-DIAG-F06A,status=deleted,0 triggers in iters 1-2
+3,CHANGE,SK-DIAG-F11A,threshold 0.65->0.60,coverage=0.00<0.50 (missing true events)
+3,DELETE,SK-DIAG-F11A,status=deleted,0 triggers in iters 1-2

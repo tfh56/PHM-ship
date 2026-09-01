@@ -1,0 +1,9 @@
+eval_protocol,algorithm,gt_variant,tp,fp,fn,tn,precision,recall,f1,accuracy,roc_auc
+"window-level (seq=15, last-ts label)",CNN-TCN-Attention,original,0,0,269,985,0.0,0.0,0.0,0.7855,
+"window-level (seq=15, last-ts label)",MSCNN-LSTMNet,original,0,0,269,985,0.0,0.0,0.0,0.7855,
+"window-level (seq=15, last-ts label)",CNN-TCN-Attention,filtered,194,344,41,675,0.3606,0.8255,0.5019,0.693,
+"window-level (seq=15, last-ts label)",MSCNN-LSTMNet,filtered,10,18,225,1001,0.3571,0.0426,0.076,0.8062,
+point-level (test rows),RandomCutForest (unsupervised),original,96,791,173,222,0.1082,0.3569,0.1661,0.248,0.1831
+point-level (test rows),RandomCutForest (unsupervised),filtered,242,645,0,395,0.2728,1.0,0.4287,0.4969,0.7596
+point-level (test rows),RandomCutForest (normal-profile),original,0,563,269,450,0.0,0.0,0.0,0.351,0.1777
+point-level (test rows),RandomCutForest (normal-profile),filtered,201,362,41,678,0.357,0.8306,0.4994,0.6856,0.779

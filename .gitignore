@@ -8,6 +8,7 @@ PSL v1.
 # ==========================================
 # local backup
 .backup/
+.cache/
 
 # Maven
 target/

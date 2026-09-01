@@ -1,0 +1,5 @@
+model,n_true_events,n_detected,event_recall
+CNN-TCN-Attention,56,50,0.8929
+MSCNN-LSTMNet,56,4,0.0714
+RCF (unsupervised),56,56,1.0
+RCF (normal-profile),56,50,0.8929

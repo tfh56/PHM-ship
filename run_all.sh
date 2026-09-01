@@ -18,7 +18,7 @@
 #   9. 角色识别 + 对话跟踪
 # ============================================================
 
-set -euo pipefail
+set -xeuo pipefail
 
 # ---- 颜色输出 ----
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'
@@ -33,29 +33,30 @@ step()  { echo -e "\n${BLUE}═════════════════�
 
 # ---- 全局变量（外行在这里改配置）----
 # ╔══════════════════════════════════════════════════════════════╗
-# ║  【外行改这里】把下面的值改成你的                              ║
+# ║  【小白改这里】把下面的值改成你的                            ║
 # ╚══════════════════════════════════════════════════════════════╝
 
 # 安装目录（建议磁盘大的地方）
-INSTALL_DIR="/opt/elastic"
+INSTALL_DIR=${INSTALL_DIR:-${HOME}/elastic}&&cd -Pe $INSTALL_DIR&&INSTALL_DIR=$(pwd)
 # 数据目录
-DATA_DIR="/data/elastic"
+DATA_DIR=${DATA_DIR:-${INSTALL_DIR}/data}
 # 你的域名（没有就写 IP）
 MY_DOMAIN="ship.local"
 # 你的 IP 地址（自动获取，也可以手动改）
 MY_IP=$(hostname -I | awk '{print $1}')
 # 企业证书 GitHub 仓库（atomgit 上的）
-CERT_REPO="https://atomgit.com/tfh56/ESLienseSigner.git"
-# 上传数据所在目录
-UPLOAD_DIR="/home/z/my-project/upload"
+CERT_DIR=${CERT_DIR:-${INSTALL_DIR}/.cert}
+LICENSE_REPO="https://atomgit.com/tfh56/ESLicenseSigner.git"
 # 数据摄入目录
-INGEST_DIR="/data/ship_ingest"
-# Elastic 版本（最新版会自动检测，也可以手动指定如 8.15.0）
-ES_VERSION=""
+INGEST_DIR=${INGEST_DIR:-${DATA_DIR}/data_ingest}
+# Elastic 版本（最新版会自动检测，也可以手动指定如 9.5.1）
+ES_VERSION=${ES_VERSION:-""}
 # 端口
 ES_PORT=9200
 KB_PORT=5601
 FLEET_PORT=8220
+#elastic kibana_system 密钥通行密码
+ES_PASSWORD="changeme"
 
 # ============================================================
 # STEP 0: 环境检查
@@ -70,6 +71,7 @@ if [[ -f /etc/os-release ]]; then
 else
     err "无法检测操作系统，请使用 Ubuntu 或 CentOS"
 fi
+[ $(id -u) -eq 0 ]&&err "请改用普通用户!"
 
 # 检测内存
 MEM_GB=$(free -g | awk '/Mem:/{print $2}')
@@ -111,8 +113,7 @@ for cmd in curl wget jq git tar; do
 done
 
 # 创建目录
-sudo mkdir -p "$INSTALL_DIR" "$DATA_DIR" "$INGEST_DIR"
-sudo chown -R $(whoami) "$INSTALL_DIR" "$DATA_DIR" "$INGEST_DIR"
+mkdir -p $INSTALL_DIR $DATA_DIR $INGEST_DIR $CERT_DIR $DATA_DIR/elasticsearch-log $DATA_DIR/kibana-log
 
 info "环境检查完成"
 
@@ -126,7 +127,7 @@ if [[ -z "$ES_VERSION" ]]; then
     info "检测最新版本..."
     ES_VERSION=$(curl -s "https://api.github.com/repos/elastic/elasticsearch/releases/latest" | jq -r '.tag_name' | sed 's/v//')
     if [[ "$ES_VERSION" == "null" ]] || [[ -z "$ES_VERSION" ]]; then
-        ES_VERSION="8.15.0"  # fallback
+        ES_VERSION="9.5.2"  # fallback
         warn "无法检测最新版本，使用 ${ES_VERSION}"
     fi
 fi
@@ -134,59 +135,18 @@ info "Elastic 版本: ${ES_VERSION}"
 
 # 下载 Elasticsearch
 ES_TAR="elasticsearch-${ES_VERSION}-linux-x86_64.tar.gz"
-if [[ ! -f "/tmp/${ES_TAR}" ]]; then
-    info "下载 Elasticsearch ${ES_VERSION}..."
-    curl -L -o "/tmp/${ES_TAR}" \
-        "https://artifacts.elastic.co/downloads/elasticsearch/${ES_TAR}"
-fi
+[ -f /tmp/$ES_TAR ]&&gzip -tq /tmp/$ES_TAR||(info "下载 Elasticsearch ${ES_VERSION}..."&&curl -L -o /tmp/${ES_TAR} https://artifacts.elastic.co/downloads/elasticsearch/${ES_TAR})
 
 # 下载 Kibana
 KB_TAR="kibana-${ES_VERSION}-linux-x86_64.tar.gz"
-if [[ ! -f "/tmp/${KB_TAR}" ]]; then
-    info "下载 Kibana ${ES_VERSION}..."
-    curl -L -o "/tmp/${KB_TAR}" \
-        "https://artifacts.elastic.co/downloads/kibana/${KB_TAR}"
-fi
+[ -f /tmp/$KB_TAR ]&&gzip -tq /tmp/$KB_TAR||(info "下载 Kibana ${ES_VERSION}..."&&curl -L -o "/tmp/${KB_TAR}" "https://artifacts.elastic.co/downloads/kibana/${KB_TAR}")
 
 # 解压
-info "解压 Elasticsearch..."
-tar -xzf "/tmp/${ES_TAR}" -C "$INSTALL_DIR"
-ES_HOME="$INSTALL_DIR/elasticsearch-${ES_VERSION}"
+ES_HOME=$INSTALL_DIR/elasticsearch-${ES_VERSION}
+test ! -e $ES_HOME&&info "解压 Elasticsearch..."&&tar -xzf /tmp/${ES_TAR} -C $INSTALL_DIR
 
-info "解压 Kibana..."
-tar -xzf "/tmp/${KB_TAR}" -C "$INSTALL_DIR"
-KB_HOME="$INSTALL_DIR/kibana-${ES_VERSION}"
-
-# ---- Elasticsearch 配置（自动安全）----
-info "配置 Elasticsearch（自动安全）..."
-
-cat > "$ES_HOME/config/elasticsearch.yml" << ES_CFG
-cluster.name: ship-engine-cluster
-node.name: ship-node-1
-path.data: ${DATA_DIR}/es-data
-path.logs: ${DATA_DIR}/es-logs
-network.host: 0.0.0.0
-http.port: ${ES_PORT}
-
-# 自动安全配置
-xpack.security.enabled: true
-xpack.security.enrollment.enabled: true
-xpack.security.http.ssl.enabled: false
-xpack.security.transport.ssl.enabled: true
-
-# 单节点模式（适合船舶部署）
-discovery.type: single-node
-
-# 索引生命周期管理
-xpack.ilm.enabled: true
-
-# 机器学习
-xpack.ml.enabled: true
-xpack.ml.use_auto_machine_memory_percent: true
-
-# 数据流
-xpack.data_streams.enabled: true
-ES_CFG
+KB_HOME=$INSTALL_DIR/kibana-${ES_VERSION}
+test ! -e $KB_HOME&&info "解压 Kibana..."&&tar -xzf /tmp/${KB_TAR} -C $INSTALL_DIR
 
 # JVM 配置
 cat > "$ES_HOME/config/jvm.options" << JVM_CFG
@@ -198,92 +158,6 @@ cat > "$ES_HOME/config/jvm.options" << JVM_CFG
 -Dfile.encoding=UTF-8
 -XX:+HeapDumpOnOutOfMemoryError
 JVM_CFG
-
-# 创建 elastic 用户（Elasticsearch 不能用 root 运行）
-if ! id elastic &>/dev/null; then
-    sudo useradd -m -s /bin/bash elastic
-fi
-sudo chown -R elastic:elastic "$ES_HOME" "$DATA_DIR"
-
-# 启动 Elasticsearch
-info "启动 Elasticsearch..."
-sudo -u elastic ES_JAVA_OPTS="-Xms4g -Xmx4g" "$ES_HOME/bin/elasticsearch" -d -p "$DATA_DIR/es.pid"
-
-# 等待启动
-info "等待 Elasticsearch 启动（最多 120 秒）..."
-for i in $(seq 1 120); do
-    if curl -sk "https://localhost:${ES_PORT}" &>/dev/null 2>&1 || \
-       curl -s "http://localhost:${ES_PORT}" &>/dev/null 2>&1; then
-        info "Elasticsearch 已启动（${i}秒）"
-        break
-    fi
-    sleep 1
-    [[ $i -eq 120 ]] && err "Elasticsearch 启动超时"
-done
-
-# 重置 elastic 超级用户密码
-ES_PASSWORD=$(sudo -u elastic "$ES_HOME/bin/elasticsearch-reset-password" -u elastic -i -b 2>/dev/null | grep "Password" | awk '{print $3}' || echo "Ship@2026")
-info "Elasticsearch elastic 用户密码: ${ES_PASSWORD}"
-
-# 保存凭据
-cat > "$DATA_DIR/.credentials" << CRED
-# Elasticsearch 凭据（妥善保管！）
-ES_URL="https://${MY_IP}:${ES_PORT}"
-ES_USER="elastic"
-ES_PASSWORD="${ES_PASSWORD}"
-CRED
-chmod 600 "$DATA_DIR/.credentials"
-
-# ---- Kibana 配置 ----
-info "配置 Kibana..."
-cat > "$KB_HOME/config/kibana.yml" << KB_CFG
-server.host: "0.0.0.0"
-server.port: ${KB_PORT}
-server.name: "ship-kibana"
-
-# 连接 Elasticsearch
-elasticsearch.hosts: ["https://localhost:${ES_PORT}"]
-elasticsearch.username: "kibana_system"
-elasticsearch.password: "${ES_PASSWORD}"
-elasticsearch.ssl.verificationMode: "none"
-
-# 中文界面
-i18n.locale: "zh-CN"
-
-# 日志
-logging:
-  to_stdout: true
-  to_file: true
-  path: ${DATA_DIR}/kibana-logs
-KB_CFG
-
-# 生成 Kibana enrollment token
-info "生成 Kibana enrollment token..."
-KB_ENROLLMENT=$(sudo -u elastic "$ES_HOME/bin/elasticsearch-create-enrollment-token" -s kibana -b 2>/dev/null || echo "")
-
-# 启动 Kibana
-info "启动 Kibana..."
-sudo chown -R elastic:elastic "$KB_HOME"
-nohup sudo -u elastic "$KB_HOME/bin/kibana" > "$DATA_DIR/kibana.log" 2>&1 &
-echo $! > "$DATA_DIR/kibana.pid"
-
-# 等待 Kibana
-info "等待 Kibana 启动（最多 180 秒）..."
-for i in $(seq 1 180); do
-    if curl -s "http://localhost:${KB_PORT}/api/status" | jq -e '.status.overall.state == "green"' &>/dev/null 2>&1; then
-        info "Kibana 已启动（${i}秒）"
-        break
-    fi
-    sleep 1
-    [[ $i -eq 180 ]] && warn "Kibana 启动较慢，请稍后访问 http://${MY_IP}:${KB_PORT}"
-done
-
-info "Elasticsearch + Kibana 安装完成！"
-info "  ES 地址: https://${MY_IP}:${ES_PORT}"
-info "  Kibana 地址: http://${MY_IP}:${KB_PORT}"
-info "  用户名: elastic"
-info "  密码: ${ES_PASSWORD}"
-
 # ============================================================
 # STEP 2: 功能拓展 — HTTPS SSL + 域名 SAN 证书 + 企业证书
 # ============================================================
@@ -292,115 +166,159 @@ step "2" "功能拓展：HTTPS SSL 访问 + 域名证书"
 # ---- 2a: 自签名 SAN 证书（基础版）----
 info "生成 SAN 证书（含 IP 和域名）..."
 
-CERT_DIR="$DATA_DIR/certs"
-mkdir -p "$CERT_DIR"
-
 # 生成 CA
-openssl req -x509 -new -nodes -keyout "$CERT_DIR/ca.key" -out "$CERT_DIR/ca.crt" \
-    -days 3650 -subj "/C=CN/O=Ship/CN=Ship-CA" 2>/dev/null
+openssl req -x509 -new -nodes -keyout $CERT_DIR/ca.key -out $CERT_DIR/ca.crt \
+    -days 3650 -subj /C=CN/O=CSSRC/CN=CSSRC-CA 2>/dev/null
 
 # 生成带 SAN 的服务证书
 cat > "$CERT_DIR/san.cnf" << SAN_CFG
 [req]
 distinguished_name = req_distinguished_name
 req_extensions = v3_req
+prompt=no
 [req_distinguished_name]
 CN = ${MY_DOMAIN}
 [v3_req]
-keyUsage = keyEncipherment, dataEncipherment
+basicConstraints = CA:FALSE
+keyUsage = digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth
 extendedKeyUsage = serverAuth, clientAuth
 subjectAltName = @alt_names
 [alt_names]
-DNS.1 = ${MY_DOMAIN}
+DNS.1 = *.${MY_DOMAIN}
 DNS.2 = localhost
 DNS.3 = ship-engine.local
 DNS.4 = *.ship.local
+DNS.5 = leo-pickerel.ts.net
+DNS.6 = *
 IP.1 = ${MY_IP}
 IP.2 = 127.0.0.1
 SAN_CFG
 
-openssl req -new -keyout "$CERT_DIR/ship.key" -out "$CERT_DIR/ship.csr" \
-    -config "$CERT_DIR/san.cnf" -nodes 2>/dev/null
+openssl req -new -keyout $CERT_DIR/ship.key -out $CERT_DIR/ship.csr \
+    -config $CERT_DIR/san.cnf -nodes 2>/dev/null
 
-openssl x509 -req -in "$CERT_DIR/ship.csr" -CA "$CERT_DIR/ca.crt" -CAkey "$CERT_DIR/ca.key" \
-    -CAcreateserial -out "$CERT_DIR/ship.crt" -days 365 \
-    -extensions v3_req -extfile "$CERT_DIR/san.cnf" 2>/dev/null
+openssl x509 -req -in $CERT_DIR/ship.csr -CA $CERT_DIR/ca.crt \
+    -CAkey $CERT_DIR/ca.key -CAcreateserial -out $CERT_DIR/ship.crt -days 3650 \
+    -copy_extensions copy -trustout -subj /C=CN/O=CSSRC/CN=CSSRC-Ship 2>/dev/null
 
 info "SAN 证书已生成（含域名 ${MY_DOMAIN} 和 IP ${MY_IP}）"
 
-# ---- 2b: 企业证书（从 atomgit tfh56/ESLienseSigner 安装）----
-info "拉取企业证书工具（atomgit tfh56/ESLienseSigner）..."
-
-SIGNER_DIR="$INSTALL_DIR/ESLienseSigner"
-if [[ ! -d "$SIGNER_DIR" ]]; then
-    git clone "$CERT_REPO" "$SIGNER_DIR" 2>/dev/null || {
-        warn "无法从 atomgit 拉取，尝试 GitHub 镜像..."
-        git clone "https://github.com/tfh56/ESLienseSigner.git" "$SIGNER_DIR" 2>/dev/null || \
-            warn "企业证书工具拉取失败，使用自签名证书（已生成）"
-    }
-fi
-
-if [[ -d "$SIGNER_DIR" ]] && [[ -f "$SIGNER_DIR/install.sh" ]]; then
-    info "安装企业证书..."
-    cd "$SIGNER_DIR"
-    bash install.sh --domain "$MY_DOMAIN" --ip "$MY_IP" \
-        --es-home "$ES_HOME" --cert-dir "$CERT_DIR" 2>/dev/null || \
-        warn "企业证书安装失败，使用自签名证书"
-    cd -
-fi
-
-# ---- 2c: 在 Elasticsearch 中配置 SSL ----
+# ---- 2b: 在 Elasticsearch 中配置 SSL ----
 info "配置 Elasticsearch HTTPS..."
 
-# 更新 ES 配置
-cat >> "$ES_HOME/config/elasticsearch.yml" << SSL_CFG
+# ES 配置
+cat > "$ES_HOME/config/elasticsearch.yml" << SSL_CFG
+cluster.name: ship-engine-cluster
+node.name: ship-node-1
+path.data: ${DATA_DIR}
+path.logs: ${DATA_DIR}/elasticsearch-log
+network.host: 0.0.0.0
+http.port: ${ES_PORT}
+
+# 单节点模式（适合船舶部署）
+discovery.type: single-node
+
+# 机器学习
+xpack.ml.enabled: true
+xpack.ml.use_auto_machine_memory_percent: true
 
 # === HTTPS SSL 配置 ===
 xpack.security.http.ssl.enabled: true
-xpack.security.http.ssl.keystore.path: "certs/ship.p12"
-xpack.security.http.ssl.keystore.password: "ShipCert@2026"
-xpack.security.http.ssl.truststore.path: "certs/ca.p12"
-xpack.security.http.ssl.truststore.password: "ShipCert@2026"
+xpack.security.http.ssl.key: ship.key
+xpack.security.http.ssl.key_passphrase: $ES_PASSWORD
+xpack.security.http.ssl.certificate: ship.crt
+xpack.security.http.ssl.certificate_authorities: [ca.crt]
 
 # 传输层 SSL
 xpack.security.transport.ssl.enabled: true
-xpack.security.transport.ssl.keystore.path: "certs/ship.p12"
-xpack.security.transport.ssl.keystore.password: "ShipCert@2026"
-xpack.security.transport.ssl.truststore.path: "certs/ca.p12"
-xpack.security.transport.ssl.truststore.password: "ShipCert@2026"
+xpack.security.transport.ssl.key: ship.key
+xpack.security.transport.ssl.key_passphrase: $ES_PASSWORD
+xpack.security.transport.ssl.certificate: ship.crt
+xpack.security.transport.ssl.certificate_authorities: ca.crt
+
+xpack.security.enrollment.enabled: true
 SSL_CFG
 
-# 将证书转为 PKCS12 格式
-mkdir -p "$ES_HOME/config/certs"
-openssl pkcs12 -export -in "$CERT_DIR/ship.crt" -inkey "$CERT_DIR/ship.key" \
-    -out "$ES_HOME/config/certs/ship.p12" -passout "pass:ShipCert@2026" \
-    -chain -CAfile "$CERT_DIR/ca.crt" 2>/dev/null
+$ES_HOME/bin/elasticsearch-service-tokens delete elastic/auto-ops es-token&>/dev/null||true
+ES_TOKEN=$($ES_HOME/bin/elasticsearch-service-tokens create elastic/auto-ops es-token | cut -d" " -f4)
+ES_AUTH="-H \"Authorization: Bearer $ES_TOKEN\""
 
-openssl pkcs12 -export -in "$CERT_DIR/ca.crt" -inkey "$CERT_DIR/ca.key" \
-    -out "$ES_HOME/config/certs/ca.p12" -passout "pass:ShipCert@2026" 2>/dev/null
+cp $CERT_DIR/*.[ck][re][ty] $ES_HOME/config
+curl -sk https://127.0.0.1:${ES_PORT} ${ES_AUTH}&>/dev/null||ES_JAVA_OPTS="-Xms700m -Xmx800m" "$ES_HOME/bin/elasticsearch" -d -p "$DATA_DIR/es.pid"
+sleep 5
 
-sudo chown -R elastic:elastic "$ES_HOME/config/certs"
-
-# 重启 Elasticsearch 以加载 SSL
-info "重启 Elasticsearch 以加载 SSL..."
-ES_PID=$(cat "$DATA_DIR/es.pid" 2>/dev/null)
-if [[ -n "$ES_PID" ]]; then
-    kill "$ES_PID" 2>/dev/null || true
-    sleep 5
-fi
-sudo -u elastic ES_JAVA_OPTS="-Xms4g -Xmx4g" "$ES_HOME/bin/elasticsearch" -d -p "$DATA_DIR/es.pid"
-sleep 15
+# 等待启动
+info "等待 Elasticsearch 启动（最多 120 秒）..."
+for i in $(seq 1 120); do
+    if curl -sk https://127.0.0.1:${ES_PORT} $ES_AUTH&>/dev/null; then
+        info "Elasticsearch 已启动（${i}秒）"
+        break
+    fi
+    sleep 1
+    [[ $i -eq 120 ]] && err "Elasticsearch 启动超时"
+done
 
 # 验证 HTTPS
-if curl -sk "https://localhost:${ES_PORT}" | jq -e '.name' &>/dev/null; then
+if curl -sk https://127.0.0.1:${ES_PORT} $ES_AUTH | jq -e '.name' &>/dev/null; then
     info "HTTPS 访问已启用！"
     info "访问地址: https://${MY_DOMAIN}:${ES_PORT} 或 https://${MY_IP}:${ES_PORT}"
 else
     warn "HTTPS 验证失败，请检查证书"
 fi
 
+# 重置 elastic 超级用户密码
+$ES_HOME/bin/elasticsearch-reset-password -u elastic -i -b 2>/dev/null << eof
+$ES_PASSWORD
+$ES_PASSWORD
+eof
+test $? -ne 0 && err "重置 elastic 超级用户密码失败。"
+$ES_HOME/bin/elasticsearch-reset-password -u kibana_system -i -b 2>/dev/null << eof
+$ES_PASSWORD
+$ES_PASSWORD
+eof
+test $? -ne 0 && err "重置 kibana_system 用户密码失败。"
+
+info "Elasticsearch elastic kibana_system 用户密码: ${ES_PASSWORD}"
+
+# 生成 Kibana enrollment token
+info "生成 Kibana enrollment token..."
+#KB_ENROLLMENT=$("$ES_HOME/bin/elasticsearch-create-enrollment-token" -s kibana 2>/dev/null || err "生成 Kibana enrollment token 失败。")
+
+# 保存凭据
+cat > $CERT_DIR/.credentials << CRED
+# Elasticsearch 凭据（妥善保管！）
+ES_URL=https://${MY_IP}:${ES_PORT}
+ES_USER=$USER
+ES_PASSWORD=${ES_PASSWORD}
+ES_TOKEN=$ES_TOKEN
+KB_ENROLLMENT_TOKEN=${KB_ENROLLMENT:-""}
+CRED
+
+chmod 600 "$CERT_DIR/.credentials"
+
+# ---- 2c: 企业证书（从 atomgit tfh56/ESLicenseSigner 安装）----
+info "拉取企业证书工具（atomgit tfh56/ESLicenseSigner）..."
+
+SIGNER_DIR=$INSTALL_DIR/ESLienseSigner
+if [[ ! -d $SIGNER_DIR ]]; then
+    git clone $LICENSE_REPO $SIGNER_DIR 2>/dev/null || {
+        warn "无法从 atomgit 拉取，尝试 GitHub 镜像..."
+        git clone "https://github.com/tfh56/ESLicenseSigner.git" $SIGNER_DIR 2>/dev/null || \
+            warn "企业证书工具拉取失败。"
+    }
+fi
+
+if [[ -d $SIGNER_DIR ]] && [[ -f $SIGNER_DIR/install-license.sh ]]; then
+    info "安装企业证书..."
+    cd $SIGNER_DIR
+    ES_PASS=$ES_PASSWORD ES_TOKEN=$ES_TOKEN bash install-license.sh 2>/dev/null || \
+        warn "企业证书安装失败。"
+    cd -
+fi
+
 # 配置 Kibana 使用 HTTPS 连 ES
-cat > "$KB_HOME/config/kibana.yml" << KB_CFG2
+cat > "$KB_HOME/config/kibana.yml" << KB_CFG
 server.host: "0.0.0.0"
 server.port: ${KB_PORT}
 server.name: "ship-kibana"
@@ -419,20 +337,14 @@ i18n.locale: "zh-CN"
 logging:
   to_stdout: true
   to_file: true
-  path: ${DATA_DIR}/kibana-logs
-KB_CFG2
+  path: ${DATA_DIR}/kibana-log
+KB_CFG
 
-# 重启 Kibana
-KB_PID=$(cat "$DATA_DIR/kibana.pid" 2>/dev/null)
-if [[ -n "$KB_PID" ]]; then
-    kill "$KB_PID" 2>/dev/null || true
-    sleep 3
-fi
-nohup sudo -u elastic "$KB_HOME/bin/kibana" > "$DATA_DIR/kibana.log" 2>&1 &
+curl -sk https://127.0.0.1:${KB_PORT} $ES_AUTH&>/dev/null||nohup $KB_HOME/bin/kibana &> $DATA_DIR/kinana-log/kibana.log&
 echo $! > "$DATA_DIR/kibana.pid"
 
 info "Kibana 已配置 HTTPS"
-info "Kibana 访问地址: https://${MY_DOMAIN}:${KB_PORT}"
+info "Kibana 访问地址: https://${MY_DOMAIN}:${KB_PORT}, Enrollment token 是 $(KB_ENROLLMENT_TOKEN:-""}"
 
 # ============================================================
 # STEP 3: 下载安装 Elastic Agent（Fleet 模式）
@@ -441,20 +353,16 @@ step "3" "下载安装 Elastic Agent（Fleet 模式）"
 
 # 生成 Fleet Server enrollment token
 info "配置 Fleet Server..."
-sudo -u elastic "$ES_HOME/bin/elasticsearch-service-tokens" create elastic/fleet/server fleet-server-token 2>/dev/null || true
-FLEET_TOKEN=$(sudo -u elastic "$ES_HOME/bin/elasticsearch-service-tokens" create elastic/fleet/server fleet-server-token -b 2>/dev/null | tail -1 || echo "fleet-server-token")
+$ES_HOME/bin/elasticsearch-service-tokens delete elastic/fleet-server fleet-server-token&>/dev/null || true
+FLEET_TOKEN=$("$ES_HOME/bin/elasticsearch-service-tokens" create elastic/fleet-server fleet-server-token 2>/dev/null | tail -1 | cut -d" " -f4 || echo "fleet-server-token")
 
 # 下载 Elastic Agent
 AGENT_TAR="elastic-agent-${ES_VERSION}-linux-x86_64.tar.gz"
-if [[ ! -f "/tmp/${AGENT_TAR}" ]]; then
-    info "下载 Elastic Agent ${ES_VERSION}..."
-    curl -L -o "/tmp/${AGENT_TAR}" \
-        "https://artifacts.elastic.co/downloads/beats/elastic-agent/${AGENT_TAR}"
-fi
+[ -f /tmp/$AGENT_TAR ]&&gzip -tq /tmp/$AGENT_TAR||(info "下载 Elastic Agent ${ES_VERSION}..."&&curl -L -o /tmp/${AGENT_TAR} https://artifacts.elastic.co/downloads/beats/elastic-agent/${AGENT_TAR})
 
 AGENT_HOME="$INSTALL_DIR/elastic-agent"
 mkdir -p "$AGENT_HOME"
-tar -xzf "/tmp/${AGENT_TAR}" -C "$AGENT_HOME" --strip-components=1
+tar -xzf /tmp/${AGENT_TAR} -C $AGENT_HOME --strip-components=1
 
 # 安装 Fleet Server
 info "安装 Fleet Server..."
@@ -497,11 +405,11 @@ info "Fleet 管理界面: https://${MY_DOMAIN}:${KB_PORT}/app/fleet"
 
 # ---- 3b: 注册 Agent 策略 ----
 info "创建 Agent 策略..."
-ES_AUTH="-u elastic:${ES_PASSWORD} -k"
 
 # 注册 Fleet Server
 curl -sk $ES_AUTH -X POST "https://localhost:${ES_PORT}/_fleet/agent/fleet-server" \
     -H "Content-Type: application/json" \
+    -H "Authorization: bearer ${FLEET_TOKEN}" \
     -d "{\"name\": \"ship-agent\", \"server_addr\": \"https://${MY_IP}:${FLEET_PORT}\"}" 2>/dev/null || true
 
 # ============================================================
@@ -529,7 +437,7 @@ GPS_EPOCH = datetime(1980, 1, 6)
 # GPS 闰秒（2024年：18秒）
 GPS_LEAP_SECONDS = 18
 # Unix epoch 与 GPS epoch 的差（秒）
-UNIX_GPS_OFFSET = int((datetime(1970, 1, 1) - GPS_EPOCH).total_seconds())
+UNIX_GPS_OFFSET = int(GPS_EPOCH - datetime(1970, 1, 1)).total_seconds()
 
 def gps_to_unix(week, seconds):
     """GPS 周秒 → Unix 时间戳"""
@@ -625,7 +533,7 @@ def convert_file(input_file, output_dir, max_mb=6):
 if __name__ == '__main__':
     import json
     input_file = sys.argv[1]
-    output_dir = sys.argv[2] if len(sys.argv) > 2 else '/data/ship_ingest/imu'
+    output_dir = sys.argv[2] if len(sys.argv) > 2 else os.path.join(os.getenv("DATA_DIR"),"/data_ingest/imu")
     convert_file(input_file, output_dir)
 PYTHON_CONVERT
 chmod +x "$INSTALL_DIR/convert_imu.py"
@@ -653,8 +561,9 @@ from requests.auth import HTTPBasicAuth
 # 配置
 ES_URL = os.environ.get("ES_URL", "https://localhost:9200")
 ES_USER = os.environ.get("ES_USER", "elastic")
-ES_PASS = os.environ.get("ES_PASS", "Ship@2026")
-INGEST_DIR = os.environ.get("INGEST_DIR", "/data/ship_ingest")
+ES_PASS = os.environ.get("ES_PASSWORD", "changeme")
+ES_TOKEN = os.environ.get("ES_TOKEN", "notset")
+INGEST_DIR = os.environ.get("INGEST_DIR")
 MAX_FILE_MB = 6
 
 auth = HTTPBasicAuth(ES_USER, ES_PASS)
@@ -682,7 +591,7 @@ def bulk_index(docs, index_name):
     resp = requests.post(
         f"{ES_URL}/_bulk",
         auth=auth, verify=verify,
-        headers={"Content-Type": "application/x-ndjson"},
+        headers={"Content-Type": "application/x-ndjson","Authorization": f"\"Bearer {ES_TOKEN}\""},
         data=bulk_body
     )
     if resp.status_code not in (200, 201):
@@ -771,7 +680,7 @@ if __name__ == '__main__':
         ingest_engine_data(engine_file)
 
     # 摄入 IMU 数据
-    imu_dir = os.environ.get("IMU_DIR", "/data/ship_ingest/imu")
+    imu_dir = os.environ.get("IMU_DIR", "~/elastic/data/data_ingest/imu")
     if os.path.isdir(imu_dir):
         ingest_imu_data(imu_dir)
 
@@ -782,11 +691,8 @@ chmod +x "$INSTALL_DIR/ingest_data.py"
 # 转换 IMU 数据
 info "转换 IMU 数据（GPS 周秒 → Unix 时间戳）..."
 python3 "$INSTALL_DIR/convert_imu.py" \
-    "$UPLOAD_DIR/6a75d5f3d7416a8a159e4766_imu_20251216-000534.txt" \
+    "$INGEST_DIR/imu_20251216-000534.txt" \
     "$INGEST_DIR/imu" || warn "IMU 数据转换失败"
-
-# 复制发动机数据
-cp "$UPLOAD_DIR/6a4c72768e37857fdf904ca4_t.json" "$INGEST_DIR/engine_sample.json"
 
 # 摄入数据到 ES
 info "摄入数据到 Elasticsearch..."
@@ -1375,7 +1281,7 @@ echo ""
 echo "登录凭据："
 echo "  用户名: elastic"
 echo "  密码: ${ES_PASSWORD}"
-echo "  （凭据已保存到 ${DATA_DIR}/.credentials）"
+echo "  （凭据已保存到 ${CERT_DIR}/.credentials）"
 echo ""
 echo "数据摄入："
 echo "  发动机数据: logs-ship-engine-default（数据流）"
