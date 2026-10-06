@@ -1,0 +1,26 @@
+{
+  "index_patterns": ["ship-events*"],
+  "data_stream": {},
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    },
+    "mappings": {
+      "properties": {
+        "@timestamp":   { "type": "date" },
+        "event_type":   { "type": "keyword" },
+        "alarm_name":   { "type": "keyword" },
+        "variable":     { "type": "keyword" },
+        "anomaly_score":{ "type": "double" },
+        "actual_value": { "type": "double" },
+        "expected_value":{ "type": "double" },
+        "severity":     { "type": "keyword" },
+        "ship_id":      { "type": "keyword" },
+        "engine_id":    { "type": "keyword" },
+        "role":         { "type": "keyword" },
+        "acknowledged": { "type": "boolean" }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "schedule": "0 30 2 * * ?",
+  "name": "ship-daily-snapshot",
+  "repository": "ship-snap-repo",
+  "config": {
+    "indices": ["ship-engine-metrics*", "ship-imu-metrics*", "ship-events*"],
+    "include_global_state": false
+  },
+  "retention": { "expire_after": "60d", "min_count": 7, "max_count": 30 }
+}

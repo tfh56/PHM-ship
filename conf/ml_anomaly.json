@@ -1,0 +1,26 @@
+{
+  "analysis": {
+    "bucket_span": "15m",
+    "detectors": [
+      { "function": "high_mean", "field_name": "value",
+        "by_field_name": "name",
+        "detector_description": "发动机变量均值异常高（过热）" },
+      { "function": "low_mean", "field_name": "value",
+        "by_field_name": "name",
+        "detector_description": "发动机变量均值异常低（压力丢失）" },
+      { "function": "high_variance", "field_name": "value",
+        "by_field_name": "name",
+        "detector_description": "发动机变量方差异常（抖动）" }
+    ],
+    "influencers": [ "name", "engine_id", "ship_id" ]
+  },
+  "data_description": {
+    "time_field": "@timestamp",
+    "time_format": "epoch_ms"
+  },
+  "datafeed_config": {
+    "indices": ["ship-engine-metrics*"],
+    "query": { "match_all": {} }
+  },
+  "description": "船舶发动机异常检测：覆盖主轴承温度、缸套温度、润滑油压力、燃油压力等异常变量"
+}

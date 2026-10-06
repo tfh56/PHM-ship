@@ -1,0 +1,43 @@
+{
+  "trigger": {
+    "schedule": { "interval": "5m" }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "indices": [".ml-anomalies-*"],
+        "body": {
+          "size": 0,
+          "query": {
+            "bool": {
+              "filter": [
+                { "range": { "timestamp": { "gte": "now-15m" } } },
+                { "range": { "anomaly_score": { "gte": 75 } } }
+              ]
+            }
+          },
+          "aggs": {
+            "by_var": {
+              "terms": { "field": "by_field_name.keyword", "size": 20 },
+              "aggs": { "max_score": { "max": { "field": "anomaly_score" } } }
+            }
+          }
+        }
+      }
+    }
+  },
+  "condition": {
+    "script": "return ctx.payload.aggregations.by_var.buckets.length > 0"
+  },
+  "actions": {
+    "index_event": {
+      "index": {
+        "index": "ship-events",
+        "doc_type": "_doc"
+      }
+    },
+    "log_payload": {
+      "logging": { "text": "异常告警: {{ctx.payload.aggregations.by_var.buckets}}" }
+    }
+  }
+}

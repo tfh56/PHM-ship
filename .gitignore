@@ -1,0 +1,108 @@
+#Copyright (c) [2019] [Pengcheng Libortory @Wuxi Onetech Co.,Ltd.]
+#[ESLicenseSigner] is licensed under the Mulan PSL v1.
+#You can use this software according to the terms and conditions of the Mulan
+PSL v1.
+
+# ==========================================
+# 1. 编译产物与构建目录 (Build Outputs)
+# ==========================================
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+build/
+!.gradle/
+gradle-app.setting
+!gradle/wrapper/gradle-wrapper.jar
+**/gradlew
+**/gradlew.bat
+
+# 通用编译类文件
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+.cache/
+
+# ==========================================
+# 2. IDE 配置文件 (IDE Specific Files)
+# ==========================================
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+.factorypath
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# ==========================================
+# 3. 日志与临时文件 (Logs & Temp)
+# ==========================================
+*.log
+logs/
+hs_err_pid*
+*.tmp
+*.swp
+*.swo
+*~
+
+# ==========================================
+# 4. 操作系统生成文件 (OS Generated)
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.directory
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ==========================================
+# 5. 敏感配置与环境变量 (Sensitive Configs)
+# ==========================================
+# 请根据实际项目调整文件名
+application-local.yml
+application-dev.yml
+config/local.properties
+.env
+.env.local
+*.pem
+*.pfx
+credentials.txt

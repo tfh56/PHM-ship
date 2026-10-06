@@ -1,0 +1,32 @@
+{
+  "index_patterns": ["ship-imu-metrics*"],
+  "data_stream": {},
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "index.lifecycle.name": "ship-lifecycle"
+    },
+    "mappings": {
+      "properties": {
+        "@timestamp":  { "type": "date" },
+        "unix_ts":     { "type": "date", "format": "epoch_second" },
+        "sentence":    { "type": "keyword" },
+        "gps_time":    { "type": "keyword" },
+        "lat":         { "type": "double" },
+        "lon":         { "type": "double" },
+        "heading":     { "type": "double" },
+        "pitch":       { "type": "double" },
+        "roll":        { "type": "double" },
+        "accel_x":     { "type": "double" },
+        "accel_y":     { "type": "double" },
+        "accel_z":     { "type": "double" },
+        "gyro_x":      { "type": "double" },
+        "gyro_y":      { "type": "double" },
+        "gyro_z":      { "type": "double" },
+        "temp":        { "type": "double" },
+        "raw":         { "type": "text" }
+      }
+    }
+  }
+}
