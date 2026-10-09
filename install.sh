@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#/!/usr/bin/env bash
 # ============================================================================
 #  deploy.sh — 船舶发动机诊断预测平台 · 可重入一键部署（读 ship.conf）
 # ----------------------------------------------------------------------------
@@ -9,8 +9,8 @@
 #  阶段：1 环境检查  2 安装包  3 证书+ES  4 Kibana  5 管线+模板
 #        6 Fleet 策略  7 Fleet Server  8 Agent 摄入  9 ML+告警  10 总览
 # ============================================================================
-set -xEeuo pipefail
-CONF_FILE=$(realpath -m $(dirname $0))/ship.conf"
+set -Eeuo pipefail
+CONF_FILE=$(realpath -m $(dirname $0))/ship.conf
 [[ -f "$CONF_FILE" ]] || { echo "✗ 缺配置文件 ship.conf（与 deploy.sh 同目录）"; exit 1; }
 # shellcheck source=ship.conf
 source "$CONF_FILE"
@@ -37,7 +37,7 @@ die(){ no "$*"; exit 1; }
 es_curl(){ curl -sk -u "elastic:${ES_PASSWORD}" -H 'Content-Type: application/json' "$@"; }
 kb_curl(){ curl -sk -u "elastic:${ES_PASSWORD}" -H 'Content-Type: application/json' -H 'kbn-xsrf: true' "$@"; }
 es(){ es_curl "$@"; }
-wait_http(){ local url=$1 secs=$2 d=$((SECONDS+secs))
+wait_http(){ local url=$1 secs=$2; local d=$((SECONDS+secs));
   while (( SECONDS < d )); do curl -sk -u "elastic:${ES_PASSWORD}" -o /dev/null --connect-timeout 3 --max-time 8 "$url" && return 0; echo -n "."; sleep 3; done; echo; return 1; }
 rnd_pw(){ openssl rand -hex 16 2>/dev/null || tr -dc 'a-f0-9' </dev/urandom | head -c 32; }
 [[ -z "$ES_PASSWORD" ]] && ES_PASSWORD=$(rnd_pw)
@@ -46,7 +46,7 @@ rnd_pw(){ openssl rand -hex 16 2>/dev/null || tr -dc 'a-f0-9' </dev/urandom | he
 STAGES="env install es kibana pipelines fleet_policy fleet_server agent ml done"
 mark(){ echo "$1=ok" >> "$STATE_FILE"; }
 done_yet(){ grep -q "^$1=ok" "$STATE_FILE" 2>/dev/null; }
-show_list(){ echo "阶段进度（$STATE_FILE）："
+show_list(){ echo "阶段进度（$STATE_FILE）：";
   local i=1 s
   for s in $STAGES; do
     if done_yet "$s"; then echo -e "  $i) $s  ${G}已完成${N}"
@@ -63,7 +63,7 @@ stage_env(){ st 1 "环境检查"
 
 stage_install(){ st 2 "下载安装包（幂等）"
   local TARS=("elasticsearch-${ES_VERSION}-linux-x86_64.tar.gz" "kibana-${ES_VERSION}-linux-x86_64.tar.gz" "elastic-agent-${ES_VERSION}-linux-x86_64.tar.gz")
-  local URLS=("elasticsearch/elasticsearch" "kibana/kibana" "beats/elastic-agent")
+  local URLS=("elasticsearch" "kibana" "beats/elastic-agent")
   local i d
   for i in 0 1 2; do
     d=""
@@ -207,7 +207,7 @@ P
           "@timestamp": {type:"date"}, channel: {type:"keyword"}, sensor_type: {type:"keyword"},
           value: {type:"double"},
           imu: {properties:{week:{type:"integer"},sow:{type:"double"},gyro_x:{type:"double"},gyro_y:{type:"double"},gyro_z:{type:"double"},acc_x:{type:"double"},acc_y:{type:"double"},acc_z:{type:"double"},temp_c:{type:"double"}}},
-          gps: {properties:{week:{type:"integer"},sow:{type:"double"},heading:{type:"double"},pitch:{type:"double"},roll:{type:"double"},lat:{type:"double"},lon:{type:"double"},alt:{type:"double"}}} } } }' > "$CONF_DIR/${T}_tpl.json"
+          gps: {properties:{week:{type:"integer"},sow:{type:"double"},heading:{type:"double"},pitch:{type:"double"},roll:{type:"double"},lat:{type:"double"},lon:{type:"double"},alt:{type:"double"}}} } } } }' > "$CONF_DIR/${T}_tpl.json"
     es_curl -X PUT "$ES_URL/_index_template/ship_${T}_tpl" --data-binary @"$CONF_DIR/${T}_tpl.json" | jq -e '.acknowledged==true' >/dev/null || wa "模板 $T PUT 失败"
     es_curl -X PUT "$ES_URL/_data_stream/ship-${T}-metrics" >/dev/null 2>&1 || true
   done
@@ -222,15 +222,15 @@ stage_fleet_policy(){ st 6 "Fleet 策略（agent_policy + 双 filestream package
   fi; ok "agent_policy: $PID"
   local K SRC RESP
   for K in engine imu; do
-    kb_curl "$KB_API/api/fleet/package_policies" | jq -e ".items[]|select(.name==\"ship-${K}-filestream\")" >/dev/null 2>&1 && { ok "package_policy $K 已存在"; continue; }
+    kb_curl "$KB_API/api/fleet/package_policies" | jq -e --arg k "$K" '.items[] | select(.name==("ship-"+$k+"-filestream"))'>&/dev/null&&{ ok "package_policy $K 已存在"; continue; }
     SRC=$(jq -n --arg pid "$PID" --arg k "$K" --argjson paths "[\"$INGEST_DIR/${K}*.txt\",\"$INGEST_DIR/${K}*.jsonl\"]" '{
-      name: ("ship-" + $k + "-filestream"), description: ("船舶" + $k + " filestream 摄入"),
+      name: ("ship-" + $k + "-filestream"), description: ("船舶" + $k + " filestream 摄入"), namespace: "default",
       policy_id: $pid, package: { name: "log", version: "2.4.0" },
       inputs: [{ type: "logfile", enabled: true,
         vars: { paths: { value: $paths, type: "yaml" },
                  custom: { value: (if $k == "engine" then "parsers:\n  - ndjson:\n      target: engine\n      add_error_key: true\n" else "" end), type: "yaml" } },
         streams: [{ id: ("ship-" + $k + "-filestream"), enabled: true,
-          data_stream: { dataset: ("ship." + $k), namespace: "default" } }] }] }')
+          data_stream: { dataset: ("ship." + $k), type: "logs" } }] }] }')
     RESP=$(kb_curl -X POST "$KB_API/api/fleet/package_policies" --data-binary "$SRC") || true
     echo "$RESP" | jq -e '.item.id' >/dev/null 2>&1 && ok "package_policy $K ✓" || wa "$K 失败: $(echo "$RESP" | jq -r '.message // empty' | head -c 120)"
   done
@@ -239,6 +239,7 @@ stage_fleet_policy(){ st 6 "Fleet 策略（agent_policy + 双 filestream package
 stage_fleet_server(){ st 7 "Fleet Server（官方 install，systemd 服务）"
   if curl -sk -o /dev/null --connect-timeout 3 "https://localhost:${FLEET_PORT}/api/fleet/health"; then ok "Fleet Server 已在运行"; mark fleet_server; return 0; fi
   local TOKEN
+  $ES_HOME/bin/elasticsearch-service-tokens delete -s elastic/fleet-server fleet-server-token>/dev/null
   TOKEN=$("$ES_HOME/bin/elasticsearch-service-tokens" create elastic/fleet-server fleet-server-token 2>/dev/null | awk '/^SERVICE_TOKEN/{print $NF}') || true
   [[ -n "$TOKEN" ]] || die "service token 创建失败"
   cp -f "$ES_HOME/config/ship-server.crt" "$AGENT_STAGE/" 2>/dev/null || true
@@ -335,13 +336,13 @@ stage_done(){ st 10 "部署完成总览"
 
 # ---- main ----
 main(){
-  case "${1:-run}" in
+  case "${1:--run}" in
     --list) show_list; exit 0;;
     --redo) grep -v "^$2=" "$STATE_FILE" > "$STATE_FILE.tmp" 2>/dev/null && mv "$STATE_FILE.tmp" "$STATE_FILE" || true; shift 2;;
   esac
   show_list
-  local order=(stage_env stage_install stage_es stage_kibana stage_pipelines stage_fleet_policy stage_fleet_server stage_agent stage_ml stage_done)
-  local names=(env install es kibana pipelines fleet_policy fleet_server agent ml done)
+  local order=(stage_env stage_install stage_es stage_kibana stage_pipelines stage_fleet_policy stage_agent stage_ml stage_done)
+  local names=(env install es kibana pipelines fleet_policy agent ml done)
   local i
   for i in "${!order[@]}"; do
     if done_yet "${names[$i]}"; then wa "阶段 $((i+1)) ${names[$i]} 已完成，跳过"; continue; fi
