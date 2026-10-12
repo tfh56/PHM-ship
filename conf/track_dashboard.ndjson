@@ -1,4 +1,0 @@
-{"attributes":{"title":"船舶航迹看板","description":"基于 IMU 经纬度展示航行轨迹"},"type":"dashboard","id":"ship-track-dashboard"}
-{"attributes":{"title":"航迹地图","description":"按时间展示船舶经纬度轨迹","visState":"{\"type\":\"map\",\"params\":{\"mapType\":\"Coordinate Map\",\"latLonField\":\"lon,lat\"}}"},"type":"visualization","id":"ship-track-map"}
-{"attributes":{"title":"航速时序","description":"航向/横滚/俯仰随时间变化"},"type":"visualization","id":"ship-attitude-ts"}
-{"attributes":{"title":"加速度散点","description":"三轴加速度散点"},"type":"visualization","id":"ship-accel-scatter"}

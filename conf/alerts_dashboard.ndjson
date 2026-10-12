@@ -1,5 +1,0 @@
-{"attributes":{"title":"船舶报警看板","description":"按告警变量名/严重度统计"},"type":"dashboard","id":"ship-alerts-dashboard"}
-{"attributes":{"title":"告警变量 Top20","description":"按 alarm_name 聚合的告警计数","visState":"{\"type\":\"pie\",\"params\":{},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"segment\"}]}"},"type":"visualization","id":"ship-alerts-top"}
-{"attributes":{"title":"告警时序","description":"按时间分布的告警数量"},"type":"visualization","id":"ship-alerts-ts"}
-{"attributes":{"title":"严重度分布","description":"按 severity 聚合"},"type":"visualization","id":"ship-alerts-severity"}
-{"attributes":{"title":"未确认告警列表","description":"acknowledged=false 的事件"},"type":"search","id":"ship-alerts-unack"}

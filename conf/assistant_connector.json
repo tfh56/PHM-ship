@@ -1,9 +1,0 @@
-{
-  "name": "ship-__ROLE__-assistant",
-  "type": "elasticsearch",
-  "config": {
-    "index_pattern": "ship-engine-metrics*,ship-imu-metrics*,ship-events*,ship-evolution*",
-    "role": "__ROLE__",
-    "system_prompt": "你是船舶__ROLE__角色的数字助理。请基于 ES 中的实时数据回答问题，并保持角色身份一致。当用户身份发生变化时，主动修正角色定义。"
-  }
-}

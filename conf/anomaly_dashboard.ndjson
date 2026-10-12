@@ -1,5 +1,0 @@
-{"attributes":{"title":"异常统计看板","description":"ML 异常检测分数与变量分布"},"type":"dashboard","id":"ship-anomaly-dashboard"}
-{"attributes":{"title":"异常分数时序","description":"anomaly_score 随时间变化","visState":"{\"type\":\"line\",\"params\":{},\"aggs\":[{\"id\":\"2\",\"type\":\"max\",\"field\":\"anomaly_score\",\"schema\":\"metric\"}]}"},"type":"visualization","id":"ship-anomaly-score-ts"}
-{"attributes":{"title":"异常变量 Top20","description":"by_field_name 聚合"},"type":"visualization","id":"ship-anomaly-top-vars"}
-{"attributes":{"title":"异常影响因子","description":"influencer 分布"},"type":"visualization","id":"ship-anomaly-influencers"}
-{"attributes":{"title":"F1 分类结果","description":"ship-fault-classified 索引的分类预测"},"type":"visualization","id":"ship-f1-classification"}
