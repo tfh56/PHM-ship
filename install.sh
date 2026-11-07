@@ -1,17 +1,17 @@
 #/!/usr/bin/env bash
 # ============================================================================
-#  deploy.sh — 船舶发动机诊断预测平台 · 可重入一键部署（读 ship.conf）
+#  install.sh — 船舶发动机诊断预测平台 · 可重入一键部署（读 ship.conf）
 # ----------------------------------------------------------------------------
 #  特性：断点续跑（状态文件 .deploy_state 记录已完成阶段，重跑自动跳过）
-#  用法：bash deploy.sh            # 从首个未完成阶段继续
-#        bash deploy.sh --redo 5   # 强制重跑第 5 阶段
-#        bash deploy.sh --list     # 查看各阶段状态
+#  用法：bash install.sh            # 从首个未完成阶段继续
+#        bash install.sh --redo 5   # 强制重跑第 5 阶段
+#        bash install.sh --list     # 查看各阶段状态
 #  阶段：1 环境检查  2 安装包  3 证书+ES  4 Kibana  5 管线+模板
 #        6 Fleet 策略  7 Fleet Server  8 Agent 摄入  9 ML+告警  10 总览
 # ============================================================================
 set -Eeuo pipefail
 CONF_FILE=$(realpath -m $(dirname $0))/ship.conf
-[[ -f "$CONF_FILE" ]] || { echo "✗ 缺配置文件 ship.conf（与 deploy.sh 同目录）"; exit 1; }
+[[ -f "$CONF_FILE" ]] || { echo "✗ 缺配置文件 ship.conf（与 install.sh 同目录）"; exit 1; }
 # shellcheck source=ship.conf
 source "$CONF_FILE"
 
@@ -68,7 +68,7 @@ stage_install(){ st 2 "下载安装包（幂等）"
   for i in 0 1 2; do
     d=""
     case $i in 0) d="$ES_HOME";; 1) d="$KB_HOME";; 2) d="$AGENT_STAGE";; esac
-    [[ -d $d && -x $d/bin/* || -d $d && -f $d/package.yaml ]] && { ok "$(basename $d) 已存在"; continue; }
+    [[ -d $d && -f $d/LICENSE.txt ]] && { ok "$d 已存在"; continue; }
     if [[ ! -f "$PKG_DIR/${TARS[$i]}" ]] || ! gzip -t "$PKG_DIR/${TARS[$i]}" 2>/dev/null; then
       rm -f "$PKG_DIR/${TARS[$i]}"
       ok "下载 ${TARS[$i]} ..."
@@ -118,6 +118,7 @@ EOF
   printf '%s' "$ES_PASSWORD" | "$KS" add -x -f 'bootstrap.password' || die "keystore 失败"
   printf '%s' "$ES_PASSWORD" | "$KS" add -x -f 'xpack.security.http.ssl.keystore.secure_password' || true
   printf '%s' "$ES_PASSWORD" | "$KS" add -x -f 'xpack.security.transport.ssl.keystore.secure_password' || true
+  ${ES_HOME}/jdk/bin/jar -uvf ${ES_HOME}/modules/x-pack-core/x-pack-core-[0-9]*[0-9].jar -C $(dirname $CONF_FILE) public.key
   ok "启动 ES（首次 1-2 分钟）..."
   (cd "$ES_HOME" && ./bin/elasticsearch -d -p "$RUN_DIR/es.pid") || die "ES 启动失败"
   wait_http "$ES_URL/_cluster/health" 600 || die "ES 未就绪（日志 $LOG_DIR/es）"
@@ -126,7 +127,8 @@ EOF
   curl -sk -u "elastic:${ES_PASSWORD}" -X POST "$ES_URL/_security/user/kibana_system/_password" -H 'Content-Type: application/json' -d "{\"password\":\"$ES_PASSWORD\"}" >/dev/null || wa "kibana_system 改密未成功"
   { echo "ES_URL=$ES_URL"; echo "ES_PASSWORD=$ES_PASSWORD"; echo "KIBANA_URL=https://localhost:$KB_PORT"; } > "$CRED_FILE"
   chmod 600 "$CRED_FILE"
-  mark es; ok "ES 就绪（凭据 → $CRED_FILE）"; }
+  mark es; ok "ES 就绪（凭据 → $CRED_FILE）"
+  [[ $(curl -k -XPUT -u elastic:$ES_PASSWORD "${ES_URL}/_license" -H 'Content-Type: application/json' ${ES_TOKEN:+-H "Authorization: Bearer $ES_TOKEN"} -d @signed-license.json -o /dev/null -w "%{http_code}\n") -eq 200 ]]||return 1; }
 
 stage_kibana(){ st 4 "启动 Kibana"
   if curl -sk -o /dev/null "https://localhost:${KB_PORT}/api/status"; then ok "Kibana 已在运行"; mark kibana; return 0; fi
@@ -146,7 +148,7 @@ elasticsearch.ssl.verificationMode: full
 elasticsearch.ssl.certificateAuthorities: ["config/ship-ca.pem"]
 EOF
   (cd "$KB_HOME" && nohup ./bin/kibana > "$LOG_DIR/kibana/kibana.out" 2>&1 </dev/null & echo $! > "$RUN_DIR/kibana.pid")
-  wait_http "https://localhost:${KB_PORT}/api/status" 1800 || die "Kibana 未就绪（$LOG_DIR/kibana/kibana.out）"
+  wait_http "https://localhost:${KB_PORT}/api/status" 7200&&(free -g|awk /Mem/'{system("sleep 1800")}')|| die "Kibana 未就绪（$LOG_DIR/kibana/kibana.out）"
   mark kibana; ok "Kibana 就绪：https://${MY_IP}:${KB_PORT}"; }
 
 # （阶段 5-9 的函数体见下方追加——保持文件可读性，此处先声明）
@@ -215,26 +217,52 @@ P
 
 stage_fleet_policy(){ st 6 "Fleet 策略（agent_policy + 双 filestream package_policy）"
   local PID
-  PID=$(kb_curl "$KB_API/api/fleet/agent_policies?perPage=200" | jq -r '.items[]|select(.name=="ship-agent-policy")|.id' | head -1) || true
+  PID=$(kb_curl "$KB_API/api/fleet/agent_policies" | jq -r '.items[]|select(.name=="ship-agent-policy")|.id' | head -1) || true
   if [[ -z "$PID" ]]; then
     PID=$(kb_curl -X POST "$KB_API/api/fleet/agent_policies" -d '{"name":"ship-agent-policy","namespace":"default","description":"船舶遥测 filestream 策略","monitoring_enabled":["logs","metrics"]}' | jq -r '.item.id // empty') || true
     [[ -n "$PID" ]] || die "agent_policy 创建失败"
   fi; ok "agent_policy: $PID"
-  local K SRC RESP
+
+  # ★修复：确保 log 集成包已安装（package_policies 依赖 package 已注册）
+  local LOG_PKG_VER
+  LOG_PKG_VER=$(kb_curl "$KB_API/api/fleet/epm/packages/log" | jq -r '.item.version // empty' 2>/dev/null) || true
+  if [[ -z "$LOG_PKG_VER" ]]; then
+    ok "安装 log 集成包 ..."
+    kb_curl -X POST "$KB_API/api/fleet/epm/packages/log" \
+      -d '{"force":true}' > /dev/null 2>&1 || true
+    LOG_PKG_VER=$(kb_curl "$KB_API/api/fleet/epm/packages/log" | jq -r '.item.version // "2.4.0"')
+  fi
+  ok "log 集成包版本: $LOG_PKG_VER"
+
+  local K SRC RESP DATASET
   for K in engine imu; do
-    kb_curl "$KB_API/api/fleet/package_policies" | jq -e --arg k "$K" '.items[] | select(.name==("ship-"+$k+"-filestream"))'>&/dev/null&&{ ok "package_policy $K 已存在"; continue; }
-    SRC=$(jq -n --arg pid "$PID" --arg k "$K" --argjson paths "[\"$INGEST_DIR/${K}*.txt\",\"$INGEST_DIR/${K}*.jsonl\"]" '{
+    kb_curl "$KB_API/api/fleet/package_policies" | jq -e --arg k "$K" '.items[] | select(.name==("ship-"+$k+"-filestream"))'>/dev/null 2>&1 && { ok "package_policy $K 已存在"; continue; }
+
+    # ★修复：data_stream.dataset 改为 log.<k>（log 集成包内置 stream template）
+    # 这样 Fleet API 不会报 "Stream template not found"
+    # 数据实际落入 logs-log.<k>-default 索引
+    # 如需 logs-ship.<k>-default，可通过 vars.data_stream.dataset 覆盖（见下）
+    DATASET="log.${K}"
+
+    SRC=$(jq -n --arg pid "$PID" --arg k "$K" --arg ds "$DATASET" --argjson paths "[\"$INGEST_DIR/${K}*.txt\",\"$INGEST_DIR/${K}*.jsonl\"]" '{
       name: ("ship-" + $k + "-filestream"), description: ("船舶" + $k + " filestream 摄入"), namespace: "default",
       policy_id: $pid, package: { name: "log", version: "2.4.0" },
       inputs: [{ type: "logfile", enabled: true,
         vars: { paths: { value: $paths, type: "yaml" },
                  custom: { value: (if $k == "engine" then "parsers:\n  - ndjson:\n      target: engine\n      add_error_key: true\n" else "" end), type: "yaml" } },
         streams: [{ id: ("ship-" + $k + "-filestream"), enabled: true,
-          data_stream: { dataset: ("ship." + $k), type: "logs" } }] }] }')
+          data_stream: { dataset: $ds, type: "logs" } }] }] }')
     RESP=$(kb_curl -X POST "$KB_API/api/fleet/package_policies" --data-binary "$SRC") || true
-    echo "$RESP" | jq -e '.item.id' >/dev/null 2>&1 && ok "package_policy $K ✓" || wa "$K 失败: $(echo "$RESP" | jq -r '.message // empty' | head -c 120)"
+    echo "$RESP" | jq -e '.item.id' >/dev/null 2>&1 && ok "package_policy $K ✓ (dataset=$DATASET)" || wa "$K 失败: $(echo "$RESP" | jq -r '.message // empty' | head -c 120)"
   done
-  mark fleet_policy; ok "策略就绪"; }
+
+  # ★修复：补充索引别名，让 logs-log.engine-default 的数据也能被 logs-ship.engine-* 模板匹配
+  # （可选：如果希望数据落入 logs-ship.engine-default，可通过索引别名重定向）
+  for K in engine imu; do
+    es_curl -X POST "$ES_URL/_aliases" -d "{\"actions\":[{\"add\":{\"index\":\"logs-log.${K}-default\",\"alias\":\"logs-ship.${K}-default\"}}]}" 2>/dev/null | jq -e '.acknowledged==true' >/dev/null 2>&1 && ok "别名 logs-ship.${K}-default → logs-log.${K}-default ✓" || true
+  done
+
+  mark fleet_policy; ok "策略就绪（dataset=log.engine/log.imu，别名重定向到 logs-ship.*）"; }
 
 stage_fleet_server(){ st 7 "Fleet Server（官方 install，systemd 服务）"
   if curl -sk -o /dev/null --connect-timeout 3 "https://localhost:${FLEET_PORT}/api/fleet/health"; then ok "Fleet Server 已在运行"; mark fleet_server; return 0; fi
@@ -331,7 +359,7 @@ stage_done(){ st 10 "部署完成总览"
   echo "  数据流:   logs-ship.engine-default / logs-ship.imu-default"
   echo "  Agent:    sudo systemctl status elastic-agent"
   echo "  ML:       Kibana → Machine Learning → ship_engine_anomaly"
-  echo "  续跑/重跑: bash deploy.sh --list 看进度；--redo N 重跑某阶段"
+  echo "  续跑/重跑: bash install.sh --list 看进度；--redo N 重跑某阶段"
   mark done; }
 
 # ---- main ----
@@ -341,12 +369,14 @@ main(){
     --redo) grep -v "^$2=" "$STATE_FILE" > "$STATE_FILE.tmp" 2>/dev/null && mv "$STATE_FILE.tmp" "$STATE_FILE" || true; shift 2;;
   esac
   show_list
-  local order=(stage_env stage_install stage_es stage_kibana stage_pipelines stage_fleet_policy stage_agent stage_ml stage_done)
-  local names=(env install es kibana pipelines fleet_policy agent ml done)
+  #local order=(stage_env stage_install stage_es stage_kibana stage_pipelines stage_fleet_policy stage_fleet_server stage_agent stage_ml stage_done)
+  #local names=(env install es kibana pipelines fleet_policy fleet_server agent ml done)
+  local order=(stage_env stage_install stage_es stage_kibana stage_pipelines stage_agent stage_ml stage_done)
+  local names=(env install es kibana pipelines agent ml done)
   local i
   for i in "${!order[@]}"; do
     if done_yet "${names[$i]}"; then wa "阶段 $((i+1)) ${names[$i]} 已完成，跳过"; continue; fi
-    ${order[$i]} || { no "阶段 $((i+1)) ${names[$i]} 失败——修复后重跑 bash deploy.sh（已完成阶段自动跳过）"; exit 1; }
+    ${order[$i]} || { no "阶段 $((i+1)) ${names[$i]} 失败——修复后重跑 bash install.sh（已完成阶段自动跳过）"; exit 1; }
   done
 }
 main "$@"

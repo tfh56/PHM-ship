@@ -1,0 +1,14 @@
+{
+  "license": {
+    "version": 5,
+    "uid": "ac7eec4b-9d05-48e7-8ed9-f9ab9a43b1d8",
+    "type": "enterprise",
+    "issue_date_in_millis": 1733529600000,
+    "expiry_date_in_millis": 1924790400000,
+    "max_resource_units": 100,
+    "issued_to": "China Ship Science Research Center",
+    "issuer": "PengCheng Laboritory @Wuxi OneTech Technology Co.,Ltd.",
+    "signature": "AAAABQAAAA0+X72RWvrdIaJmeu4kAAAAIJ7OGxTSSdCMxSJXrNi2h21Hn9MuDlu1brg4XZ/If0/PAAABAHxAxNc3NdPAch6wNVOcpJwdx2RhRTMYOzOeF5mhunAk8YcnCQ6Egyb9QmST14MKySTY6Xd59+EJSiXtDLEvcx4UYlRE9IRmObyy+8wmS+tqVGbjztlKjFC0QOvuTmgZCw4w4uhCVdD7WynEwbh/JEeW5q+dN1x8hJMOmkEn9h6Frvi3M2eQULiEgbhF1RCasXFbsc5vWcoJPMVSjXE9NQ3R6DswRbD2WSyzmzz+Ccl4uJnZqDc5MFJlviHhrr1y5NSMrR2h7jF1BYMPyqkWyRw9uBS+YCpx4bz3+7wlC4+LaJfaLXAqy5n+Tibb+5YaGsXtA037JzrG5QjommCVOXQ=",
+    "start_date_in_millis": 1733529600000
+  }
+}
